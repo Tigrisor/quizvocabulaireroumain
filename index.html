@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="http://quizzvocabulaireroumain.perso.sfr.fr/favicon.ico" >
+        <meta charset="utf-8" />
+        <meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
+        <meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
+        
+        <!-- interdire le référencement -->
+        <!-- <meta name="robots" content="noindex,nofollow" /> -->
+        
+        <!-- autoriser le référencement -->
+        <meta name="robots" content="index, follow" />
+        
+        <link rel="stylesheet" href="quiz.css" />	 
+
+        <title>Quiz pour apprendre le vocabulaire roumain</title>	
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>		
+        <script type="text/javascript" src="jstree-v.pre1.0/jquery.jstree.js"></script>
+    </head>
+
+    <body>
+        <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49684437-1', 'sfr.fr');
+  ga('send', 'pageview');
+
+</script>
+
+        <header>
+        </header>
+
+        <div class="title_wrapper">
+            <h1>
+                Quiz pour apprendre le vocabulaire roumain
+            </h1>
+        </div>
+
+        <aside>
+
+            <h4>
+                Test
+            </h4>
+            <div class="testdiv">
+                <!-- <fieldset>
+             <legend> Test </legend> -->
+                <div class="testItemLign">
+                    <span>score : </span><span id="textScore"></span>
+                </div>
+                <!-- <p id="textScore" >-->
+
+                <div class="testItemLign">
+                    <span id="textPreviousQuestion" class="leftTestItem"></span><span id="textPreviousAnswer"></span>
+                    <!--<img id="imageResult" /></span>-->
+                </div>
+                <div class="testItemLign">
+                    <span id="labelReponseCorrecte" class="leftTestItem"></span><span id="textPreviousQuestionRightAnswer"></span>
+                </div>
+                <div class="testItemLign">
+                    <span id="textQuestion" class="leftTestItem"></span><input id="inputAnswer" type="text" /><button id="buttonOk" type="button" class="action bluebtn"><span class="label">✔</span></button>
+                </div>
+
+            </div>
+
+            <!--</fieldset>-->
+            <h5>Configuration des touches</h5>
+            <!-- ăîțâș -->
+            
+            <!--<div class="paramdiv">
+
+                <span>
+                    ă
+                    <input class="inputkey" id="inputKeyACorne" type="text" />
+                </span>
+                <span>
+                    ș
+                    <input class="inputkey" id="inputKeySCedille" type="text" />
+                </span>
+                <span>
+                    î
+                    <input id="inputKeyIChapeau" type="text" />
+                </span>
+                <span>
+                    â
+                    <input id="inputKeyAChapeau" type="text" />
+                </span>
+                <span>
+                    ț
+                    <input id="inputKeyTCedille" type="text" />
+                </span>
+
+            </div> -->
+            
+            <div id="inputKeys" class="paramdiv">
+                
+            </div>
+            
+            <h5>Sens du test</h5>
+            <div class="paramdiv">
+                <button id="buttonSwitch" type="button" class="action bluebtn"><span class="label"></span></button>
+            </div>
+
+        </aside>
+
+
+        <section>
+
+
+            <!--<fieldset>
+             <legend>Configuration</legend>-->
+
+            <!--
+            bouton avec image dedans
+            <button id="buttonSwitch" type="button" class="action bluebtn"><img id="imageButtonSwitch" /></button>-->
+            <!-- src="rotofr.png" -->
+
+            <h5>Choix du contenu</h5>            
+            <div id="voctree" class="paramdiv">
+                <img src="img/ajax-loader.gif" alt="loading" />
+            </div>
+
+            <!--</fieldset>	-->
+
+
+        </section>
+
+
+
+
+        <script type="text/javascript" src="quiz.js" charset="UTF-8" ></script>
+
+        <footer>
+            Pour tout commentaire ou bug à signaler : <a href="mailto:quizzvocabulaireroumain@sfr.fr">quizzvocabulaireroumain@sfr.fr</a>.
+        </footer>	
+
+
+    </body>
+
+</html>

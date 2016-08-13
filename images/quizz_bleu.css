@@ -1,0 +1,25 @@
+/*.textTest*/
+body
+{
+	font-family: Georgia;
+	font-size: x-large;
+	background-color: #9D99E4; 
+	/* ECECEC; */
+	color: #161160;
+}
+
+fieldset
+{
+	background-color: white;
+	border: 3px #5D59AF solid;
+	background-color: #BAB7E4
+}
+
+input[type="text"] {
+	font-family: Georgia;
+    font-size: x-large;
+	text-align: center;
+	border-radius: 5px;
+	border: 1px #5D59AF solid;
+	color: #161160;
+}
