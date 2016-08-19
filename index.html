@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="shortcut icon" type="image/x-icon" href="http://quizvocabroumain@free.fr/favicon.ico" >
-        <meta charset="utf-8" />
-        <meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
-        <meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
-        
-        <!-- interdire le référencement -->
-        <!-- <meta name="robots" content="noindex,nofollow" /> -->
-        
-        <!-- autoriser le référencement -->
-        <meta name="robots" content="index, follow" />
-        
-        <link rel="stylesheet" href="quiz.css" />	 
+	<head>        
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- BS -->
+			<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- BS -->
 
-        <title>Quiz pour apprendre le vocabulaire roumain</title>	
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>		
-        <script type="text/javascript" src="jstree-v.pre1.0/jquery.jstree.js"></script>
-    </head>
+				<link rel="shortcut icon" type="image/x-icon" href="http://quizvocabroumain@free.fr/favicon.ico" >
+					<meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
+					<meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
 
-    <body>
-        <script>
+					<!-- interdire le référencement -->
+					<meta name="robots" content="noindex,nofollow" />
+
+					<!-- autoriser le référencement -->
+					<!-- <meta name="robots" content="index, follow" /> -->
+
+					<!-- <link rel="stylesheet" href="quiz.css" /> -->
+
+					<title>Quiz pour apprendre le vocabulaire roumain</title>
+
+					<!-- Latest compiled and minified CSS -->
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+						<!-- Optional theme -->
+						<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">		
+							<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+							<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+							<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+						</head>
+
+						<body>
+							<!-- script google analytics -->
+							<!--<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -29,48 +42,58 @@
   ga('create', 'UA-49684437-1', 'sfr.fr');
   ga('send', 'pageview');
 
-</script>
+</script>-->
 
-        <header>
-        </header>
+							<div class="container">
+								<header class="page-header">
+									<h1>Quiz pour apprendre le vocabulaire roumain</h1>
+								</header>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="row">
+											<div class="col-sm-12 panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">Test</h3>
+												</div>
+												<div class="panel-body">
+													<!-- Partie test -->	
+													<div class="row">
+														<span>score : </span><span id="textScore"></span>
+													</div>
+													<div class="row">
+														<span id="textPreviousQuestion" class="leftTestItem"></span><span id="textPreviousAnswer"></span>
+													</div>
+													<div class="row">
+														<span id="labelReponseCorrecte" class="leftTestItem"></span><span id="textPreviousQuestionRightAnswer"></span>
+													</div>
+													<div class="row">
+														<span id="textQuestion" class="leftTestItem"></span>
 
-        <div class="title_wrapper">
-            <h1>
-                Quiz pour apprendre le vocabulaire roumain
-            </h1>
-        </div>
+														<!--<input id="inputAnswer" type="text" />
+														<button id="buttonOk" type="button" class="action bluebtn"><span class="label">✔</span></button>-->
 
-        <aside>
 
-            <h4>
-                Test
-            </h4>
-            <div class="testdiv">
-                <!-- <fieldset>
-             <legend> Test </legend> -->
-                <div class="testItemLign">
-                    <span>score : </span><span id="textScore"></span>
-                </div>
-                <!-- <p id="textScore" >-->
+														<div class="input-group col-sm-3"> 
+															<input id="inputAnswer" type="text" class="form-control" style="text-align:right"/>
+															<span class="input-group-btn">
+																<button id="buttonOk" class="btn btn-primary" type="button"><span class="glyphicon glyphicon-ok-sign"></span> Valider</button>
+															</span>
+														</div>
 
-                <div class="testItemLign">
-                    <span id="textPreviousQuestion" class="leftTestItem"></span><span id="textPreviousAnswer"></span>
-                    <!--<img id="imageResult" /></span>-->
-                </div>
-                <div class="testItemLign">
-                    <span id="labelReponseCorrecte" class="leftTestItem"></span><span id="textPreviousQuestionRightAnswer"></span>
-                </div>
-                <div class="testItemLign">
-                    <span id="textQuestion" class="leftTestItem"></span><input id="inputAnswer" type="text" /><button id="buttonOk" type="button" class="action bluebtn"><span class="label">✔</span></button>
-                </div>
 
-            </div>
 
-            <!--</fieldset>-->
-            <h5>Configuration des touches</h5>
-            <!-- ăîțâș -->
-            
-            <!--<div class="paramdiv">
+													</div>
+												</div>
+											</div>      
+										</div>
+										<div class="row">
+											<div class="col-sm-12 panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">Configuration des touches</h3>
+												</div>
+												<div id="inputKeys" class="panel-body">
+													<!-- ăîțâș -->
+													<!--<div class="paramdiv">
 
                 <span>
                     ă
@@ -94,50 +117,65 @@
                 </span>
 
             </div> -->
-            
-            <div id="inputKeys" class="paramdiv">
-                
-            </div>
-            
-            <h5>Sens du test</h5>
-            <div class="paramdiv">
-                <button id="buttonSwitch" type="button" class="action bluebtn"><span class="label"></span></button>
-            </div>
 
-        </aside>
+													<!-- <div id="inputKeys" class="paramdiv">
 
-
-        <section>
-
-
-            <!--<fieldset>
-             <legend>Configuration</legend>-->
-
-            <!--
-            bouton avec image dedans
-            <button id="buttonSwitch" type="button" class="action bluebtn"><img id="imageButtonSwitch" /></button>-->
-            <!-- src="rotofr.png" -->
-
-            <h5>Choix du contenu</h5>            
-            <div id="voctree" class="paramdiv">
-                <img src="img/ajax-loader.gif" alt="loading" />
-            </div>
-
-            <!--</fieldset>	-->
-
-
-        </section>
-
-
+								</div> -->
+												</div>
+											</div>       
+										</div>
+										<div class="row">
+											<div class="col-sm-12 panel panel-default">
+												<div class="panel-heading">
+													<h3 class="panel-title">Sens du test</h3>
+												</div>
+												<div class="panel-body">
+													<!-- sens du test -->
+													<button id="buttonSwitch" type="button" class="action bluebtn"><span class="label"></span></button>
+												</div>
+											</div>       
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6 panel panel-default">
+											<div class="panel-heading">
+												<h3 class="panel-title">Choix du contenu</h3>
+											</div>
+											<div class="panel-body">
+												<div id="voctree">
+													<img src="img/ajax-loader.gif" alt="loading" />
+												</div>
+											</div>
+										</div>       
+									</div>
+								</div>
+							</div>
 
 
-        <script type="text/javascript" src="quiz.js" charset="UTF-8" ></script>
 
-        <footer>
+
+
+
+
+							<footer>
             Pour tout commentaire ou bug à signaler : <a href="mailto:quizvocabroumain@free.fr">quizvocabroumain@free.fr</a>.
-        </footer>	
+							</footer>	
 
+							<!-- inclusion des .js a la fin du body -->
 
-    </body>
+							<!-- JQuery -->
+							<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>		
 
-</html>
+							<!-- Bootstrap -->
+							<!-- Latest compiled and minified JavaScript -->
+							<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+							<!-- Jstree -->
+							<script type="text/javascript" src="jstree-v.pre1.0/jquery.jstree.js"></script>
+
+							<!-- script principal -->
+							<script type="text/javascript" src="quiz.js" charset="UTF-8" ></script>
+
+						</body>
+
+					</html>
