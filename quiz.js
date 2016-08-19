@@ -701,6 +701,11 @@ function KeyConfigGenerique(defaultValue, targetChar)
   </div>
 														
 */
+
+	this.$divElement = $(document.createElement('div')).attr({
+		class: "input-group col-sm-2"
+	});
+
 	//on crée l'input et on set ses attributs
 	this.$inputKeyElement = $(document.createElement('input')).attr({
 type: "text",
@@ -712,17 +717,19 @@ style: "text-align:left"
 	this.$inputKeyElement.val(defaultValue);
 
 	//on crée le span et on lui ajoute l'input
-	this.$spanElement = $(document.createElement('span')).attr({
-class: "keyConfig"
+	this.$spanElement = $(document.createElement('span')).text(targetChar).attr({
+//class: "keyConfig"
+class:"input-group-addon"
 	});
 	//on ajoute le caractère
-	this.$spanElement.prepend(targetChar).append(this.$inputKeyElement);
+	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
+	//this.$spanElement.prepend(targetChar).append(this.$inputKeyElement);
 	//on ajoute l'input
-	this.$spanElement.append(this.$inputKeyElement);
+	//this.$spanElement.append(this.$inputKeyElement);
 
 	this.addInElement = function(containerId)
 	{
-		$("#" + containerId).append(this.$spanElement);
+		$("#" + containerId).append(this.$divElement);
 	};
 
 	var myKeyConfig = this;
