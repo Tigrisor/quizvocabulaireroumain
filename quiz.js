@@ -6,7 +6,6 @@ function itemArrayToString(itemArray)
 	for (var i = 0; i < itemArray.length; i++) {
 		itemToString += i + " : [ " + itemArray[i].fr + " ; " + itemArray[i].ro + "]\n";
 	}
-
 	return itemToString;
 }
 
@@ -974,7 +973,8 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 	//myButtonSwitch.imageButton.src = "frtoro.png";
 	//myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
 	//this.buttonSpan.attr("innerHTML", "fr > ro");
-	this.buttonSpan.html("fr > ro");
+	//this.buttonSpan.html("fr > ro");
+	this.buttonSwitch.text("fr > ro")
 
 	this.listOfBindedFunctionToClickEvent = [];
 
@@ -998,16 +998,18 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 		{
 			myButtonSwitch.frToRo = false;
 			//myButtonSwitch.buttonSwitch.innerHTML = "ro > fr";
+			myButtonSwitch.buttonSwitch.text("ro > fr")
 			//myButtonSwitch.buttonSpan.attr("innerHTML", "ro > fr");
-			myButtonSwitch.buttonSpan.html("ro > fr");
+			//myButtonSwitch.buttonSpan.html("ro > fr");
 			//myButtonSwitch.imageButton.src = "rotofr.png";
 		}
 		else
 		{
 			myButtonSwitch.frToRo = true;
 			//myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
+			myButtonSwitch.buttonSwitch.text("fr > ro")
 			//myButtonSwitch.buttonSpan.attr("innerHTML", "fr > ro");
-			myButtonSwitch.buttonSpan.html("fr > ro");
+			//myButtonSwitch.buttonSpan.html("fr > ro");
 			//myButtonSwitch.imageButton.src = "frtoro.png";
 		}
 
@@ -1447,7 +1449,9 @@ function sendGetListRequest()
 {
 	
 	$.ajax({
-url: 'getLists.php',
+        
+//url: 'getLists.php',
+        url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
 type: 'GET',
 dataType: 'json',
 success: function(jsonResult, statut) {
@@ -1494,7 +1498,7 @@ complete: function(resultat, statut) {
 //lancé dès que l'arbre dom est fini de charger
 jQuery(function()
 {
-	//sendGetListRequest(); commenté pour offline 
+	sendGetListRequest(); //commenté pour offline 
 }
 );
 
