@@ -1,20 +1,20 @@
-
 <?php
-
 header('Content-Type: text/html; charset=utf-8');
-
+// il faut commencer le script impérativement par la ligne ci-dessus, sinon erreur du type : "Cannot modify header information : headers already sent by"
 //echo "Ceci est un caractère : ă"; 
 
 
 try
-{
-  $bdd = new PDO('mysql:host=bases.sql;dbname=quizzvocabulaire-vocabulaireroumain','quizzvocabulaire', 'fT3snk9nUK');
+{	
+  //$bdd = new PDO('mysql:host=bases.sql;dbname=quizzvocabulaire-vocabulaireroumain','quizzvocabulaire', 'fT3snk9nUK');
+  $bdd = new PDO('mysql:host=sql.free.fr;dbname=quizvocabroumain','quizvocabroumain', 'Cristina123');
+  
   $bdd->exec("SET CHARACTER SET utf8");
 }
 catch (Exception $e)
 {
-echo 'Erreur : ' . $e->getMessage() ;
-        die('Erreur : ' . $e->getMessage());
+	echo 'Erreur : ' . $e->getMessage() ;
+	die('Erreur : ' . $e->getMessage());
 }
 
 //$reponse = $bdd->query('SELECT nodes.*, test_items.* FROM nodes LEFT JOIN test_items ON test_items.id = nodes.test_item_id');

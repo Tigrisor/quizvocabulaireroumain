@@ -1450,8 +1450,9 @@ function sendGetListRequest()
 	
 	$.ajax({
         
-//url: 'getLists.php',
-        url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
+
+		url: 'getLists.php',
+        //url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
 type: 'GET',
 dataType: 'json',
 success: function(jsonResult, statut) {
