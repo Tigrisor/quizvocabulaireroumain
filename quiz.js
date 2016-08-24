@@ -1485,7 +1485,7 @@ success: function(jsonResult, statut) {
 error: function(resultat, statut, erreur) {
 			console.log("getLists query error : " + resultat + " " + statut + " " + erreur);
 			// en cas d'erreur on fait un refresh de la page
-			location.reload();
+			//location.reload();
 			
 			//sendGetListRequest();
 		},
