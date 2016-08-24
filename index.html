@@ -63,10 +63,17 @@
 															<span>score : </span><span id="textScore"></span>
 														</div>
 														<div class="row">
-															<span id="textPreviousQuestion" class="leftTestItem"></span><span id="textPreviousAnswer"></span>
+
+															<div class="alert alert-success col-xs-offset-1 col-xs-10">
+																<!-- <strong>Bravo !</strong> -->
+																<h2><span id="textPreviousQuestion"></span> : <span id="textPreviousAnswer"></span></h2>
+															</div>
+
+
+															<!-- <h2><span class="label label-success col-xs-offset-1 col-xs-10"><span id="textPreviousQuestion"></span> : <span id="textPreviousAnswer"></span></span></h2> -->
 														</div>
 														<div class="row">
-															<span id="labelReponseCorrecte" class="leftTestItem"></span><span id="textPreviousQuestionRightAnswer"></span>
+															<span id="labelReponseCorrecte"></span><span id="textPreviousQuestionRightAnswer"></span>
 														</div>
 														<div class="row">
 															<!--<span id="textQuestion" class="leftTestItem"></span>-->
@@ -98,11 +105,11 @@
 														<h3 class="panel-title">Configuration</h3>
 													</div>
 													<div class="panel-body">
-													<p>
-														<form id="inputKeys" class="form-inline">
-														<legend>Configuration des touches</legend>
-															<!-- ăîțâș -->
-															<!--
+														<p>
+															<form id="inputKeys" class="form-inline">
+																<legend>Configuration des touches</legend>
+																<!-- ăîțâș -->
+																<!--
                 <span>
                     ă
                     <input class="inputkey" id="inputKeyACorne" type="text" />
@@ -125,13 +132,13 @@
                 </span>
 
             </div> -->
-														</form>
+															</form>
 														</p>
 														<p>
-														<form class="form-inline">
-														<legend>Sens du test</legend>
-														<button id="buttonSwitch" type="button" class="btn btn-primary"><span class="label"></span></button>
-														</form>
+															<form class="form-inline">
+																<legend>Sens du test</legend>
+																<button id="buttonSwitch" type="button" class="btn btn-primary"><span class="label"></span></button>
+															</form>
 														</p>
 													</div>
 												</div>
@@ -153,20 +160,20 @@
 												</div>       </div>
 										</div>-->
 									</div>
-									
-										<div class="col-md-5">
-											<div class="panel panel-primary">
-												<div class="panel-heading">
-													<h3 class="panel-title">Choix du contenu</h3>
+
+									<div class="col-md-5">
+										<div class="panel panel-primary">
+											<div class="panel-heading">
+												<h3 class="panel-title">Choix du contenu</h3>
+											</div>
+											<div class="panel-body">
+												<div id="voctree">
+													<img src="img/ajax-loader.gif" alt="loading" />
 												</div>
-												<div class="panel-body">
-													<div id="voctree">
-														<img src="img/ajax-loader.gif" alt="loading" />
-													</div>
-												</div>
-											</div>       
-										</div> 
-									
+											</div>
+										</div>       
+									</div> 
+
 								</div>
 								<div class="row">
 									<div class="col-md-12">
