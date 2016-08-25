@@ -16,3 +16,14 @@ footer
 	font-size : 18px;
 }
 
+#zoneResultat
+{
+	text-align:center;
+	font-size:18px;
+}
+
+.wrongAnswer
+{
+    text-decoration:line-through;
+}
+

@@ -106,7 +106,7 @@ function TestItem(jsonTreeItem) {
 }
 
 // le test
-function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPreviousQuestionId, textPreviousAnswerId, textQuestionId, inputAnswerId, textPreviousQuestionRightAnswerId, labelReponseCorrecteId, textScore) {
+function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPreviousQuestionId, textPreviousAnswerId, textQuestionId, inputAnswerId, textPreviousQuestionRightAnswerId, labelReponseCorrecteId, textScore, zoneResultatId) {
 
 	// *** les objets ***    
 
@@ -114,15 +114,15 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 	this.buttonSwitch = buttonSwitch;
 
 	// html elements
-	this.textPreviousQuestion = document.getElementById(textPreviousQuestionId);
-	this.textPreviousAnswer = document.getElementById(textPreviousAnswerId);
-	this.textPreviousQuestionRightAnswer = document.getElementById(textPreviousQuestionRightAnswerId);
-	this.labelReponseCorrecte = document.getElementById(labelReponseCorrecteId);
-	//this.imageResult=document.getElementById(imageResultId);	
+	this.$textPreviousQuestion = $("#" + textPreviousQuestionId);
+	this.$textPreviousAnswer = $("#" + textPreviousAnswerId);
+	this.$textPreviousQuestionRightAnswer = $("#" + textPreviousQuestionRightAnswerId);
+	this.$labelReponseCorrecte = $("#" + labelReponseCorrecteId);
 	this.textQuestion = document.getElementById(textQuestionId);
 	this.inputAnswer = document.getElementById(inputAnswerId);
 	this.textScore = textScore;
 	this.buttonOk = $("#" + buttonOkId);
+	this.$zoneResultat = $("#" + zoneResultatId)
 
 	// *** autres attributs ***
 
@@ -285,25 +285,26 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 		if (this.currentTestItemId != 0)
 		{
 			var currentTestItem = this.testItemMap[this.currentTestItemId];
-			this.textPreviousQuestion.innerHTML = currentTestItem.getQuestion(this.frToRo)[0];//this.quizzSessionItemArray[this.index].fr[0];
-			this.textPreviousAnswer.innerHTML = this.inputAnswer.value;
-
+			this.$textPreviousQuestion.text(currentTestItem.getQuestion(this.frToRo)[0]);
 
 			if (currentTestItem.compareWithSolution(this.frToRo, this.inputAnswer.value))
 			{
-				this.textPreviousAnswer.className = "rightAnswer";
-				this.textPreviousQuestionRightAnswer.innerHTML = "";
-				this.labelReponseCorrecte.innerHTML = "";
-				//this.imageResult.src = "tick.png";
+				//cas réponse bonne 
+				this.$textPreviousAnswer.text(this.inputAnswer.value).removeClass( "wrongAnswer" );
+				this.$textPreviousQuestionRightAnswer.text("");
+				this.$labelReponseCorrecte.text("");
+				this.$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" );
 				this.textScore.countWrightAnswer();
 				currentTestItem.substractChance();
 			}
 			else
 			{
-				this.textPreviousAnswer.className = "wrongAnswer";
-				this.textPreviousQuestionRightAnswer.innerHTML = currentTestItem.getAnswer(this.frToRo)[0];
-				this.labelReponseCorrecte.innerHTML = "Réponse correcte :";
-				//this.imageResult.src = "cross.png";
+				// cas réponse fausse
+				this.$textPreviousAnswer.text(this.inputAnswer.value).addClass( "wrongAnswer" );
+				this.$textPreviousQuestionRightAnswer.text(currentTestItem.getAnswer(this.frToRo)[0]);
+				//this.textPreviousQuestionRightAnswer.innerHTML = currentTestItem.getAnswer(this.frToRo)[0];
+				this.$labelReponseCorrecte.text("Réponse correcte :");
+				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" );
 				this.textScore.countWrongAnswer();
 				currentTestItem.addChance();
 			}
@@ -1459,7 +1460,7 @@ success: function(jsonResult, statut) {
 
 			//var quizzJsTree = new QuizzJsTree("voctree",jsonResult);
 
-			var myQuizz = new Quizz("buttonOk", buttonSwitch, "voctree", jsonResult, "textPreviousQuestion", "textPreviousAnswer", "textQuestion", "inputAnswer", "textPreviousQuestionRightAnswer", "labelReponseCorrecte", textScore);
+			var myQuizz = new Quizz("buttonOk", buttonSwitch, "voctree", jsonResult, "textPreviousQuestion", "textPreviousAnswer", "textQuestion", "inputAnswer", "textPreviousQuestionRightAnswer", "labelReponseCorrecte", textScore, "zoneResultat");
 
 
 			myQuizz.performQuizz();
