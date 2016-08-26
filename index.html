@@ -5,7 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- BS -->
 			<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- BS -->
 
-				<link rel="shortcut icon" type="image/x-icon" href="http://quizvocabroumain@free.fr/favicon.ico" >
+			<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" >
+				
 					<meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
 					<meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
 
@@ -60,11 +61,15 @@
 													<div class="panel-body">
 														<!-- Partie test -->	
 														<div class="row">
-															<span>score : </span><span id="textScore"></span>
+														<div class="input-group col-xs-offset-1 col-xs-10">
+														
+															<h2><span id="" class="label label-primary"><span>score : </span><span id="textScore" class="badge"></span></span></h2>
+															<!-- labelScore -->
+															</div>
 														</div>
 														<div class="row">
 
-															<div id="zoneResultat" class="alert alert-success col-xs-offset-1 col-xs-10">
+															<div id="zoneResultat" class="alert alert-success col-xs-offset-1 col-xs-10" style="display:none">
 																<span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span>
 																<!--<span style="border: 2px solid black;"><span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span></span>-->
 																<!-- <h2><span id="textPreviousQuestion"></span> : <span id="textPreviousAnswer"></span></h2> -->
@@ -81,10 +86,9 @@
 
 															<!--<input id="inputAnswer" type="text" />
 														<button id="buttonOk" type="button" class="action bluebtn"><span class="label">✔</span></button>-->
-															<div class="form-group">
-																<!-- <h4><label id="textQuestion" for="buttonOk" class="col-md-6 control-label">truc en francais</label></h4> -->
+															<div class="form-group">																
 																<div class="input-group col-xs-offset-1 col-xs-10"> 
-																	<span id="textQuestion" class="input-group-addon">truc en francais</span>
+																	<span id="textQuestion" class="input-group-addon"></span>
 																	<input id="inputAnswer" type="text" class="form-control input-lg" style="text-align:right" placeholder="Réponse"/>
 																	<span class="input-group-btn">
 																		<button id="buttonOk" class="btn btn-primary btn-lg" type="button"><span class="glyphicon glyphicon-ok-sign"></span> <span class="hidden-xs">Valider</span></button>

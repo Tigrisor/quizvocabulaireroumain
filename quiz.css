@@ -10,7 +10,7 @@ footer
 	color : #777777;
 	text-align: left;
 }
-
+/* voir si on ne peut pas mutualiser le 18px qqpart */
 #textQuestion
 {
 	font-size : 18px;
@@ -19,6 +19,11 @@ footer
 #zoneResultat
 {
 	text-align:center;
+	font-size:18px;
+}
+
+#labelScore
+{
 	font-size:18px;
 }
 

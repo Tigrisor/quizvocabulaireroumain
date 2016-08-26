@@ -293,7 +293,7 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				this.$textPreviousAnswer.text(this.inputAnswer.value).removeClass( "wrongAnswer" );
 				this.$textPreviousQuestionRightAnswer.text("");
 				this.$labelReponseCorrecte.text("");
-				this.$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" );
+				this.$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" ).show("slow");
 				this.textScore.countWrightAnswer();
 				currentTestItem.substractChance();
 			}
@@ -304,7 +304,7 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				this.$textPreviousQuestionRightAnswer.text(currentTestItem.getAnswer(this.frToRo)[0]);
 				//this.textPreviousQuestionRightAnswer.innerHTML = currentTestItem.getAnswer(this.frToRo)[0];
 				this.$labelReponseCorrecte.text("Réponse correcte :");
-				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" );
+				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
 				this.textScore.countWrongAnswer();
 				currentTestItem.addChance();
 			}
@@ -686,24 +686,9 @@ src : 'vacances.jpg'
 // représente un input de touche
 function KeyConfigGenerique(defaultValue, targetChar)
 {
-	/*
-															<div class="input-group col-sm-3"> 
-															<input id="inputAnswer" type="text" class="form-control" style="text-align:right"/>
-															<span class="input-group-btn">
-																<button id="buttonOk" class="btn btn-default" type="button">Valider</button>
-															</span>
-														</div>
-														
-														
-<div class="input-group col-sm-2"> 
-    <span class="input-group-addon">€</span>
-    <input type="text" class="form-control" style="text-align:right" value="100">
-  </div>
-														
-*/
 
 	this.$divElement = $(document.createElement('div')).attr({
-		class: "input-group col-sm-2"
+		class: "input-group col-xs-2"
 	});
 
 	//on crée l'input et on set ses attributs
