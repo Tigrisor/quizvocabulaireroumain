@@ -106,7 +106,7 @@ function TestItem(jsonTreeItem) {
 }
 
 // le test
-function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPreviousQuestionId, textPreviousAnswerId, textQuestionId, inputAnswerId, textPreviousQuestionRightAnswerId, labelReponseCorrecteId, textScore, zoneResultatId) {
+function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPreviousQuestionId, textPreviousAnswerId, textQuestionId, inputAnswerId, textPreviousQuestionRightAnswerId, textScore, zoneResultatId) {
 
 	// *** les objets ***    
 
@@ -117,7 +117,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 	this.$textPreviousQuestion = $("#" + textPreviousQuestionId);
 	this.$textPreviousAnswer = $("#" + textPreviousAnswerId);
 	this.$textPreviousQuestionRightAnswer = $("#" + textPreviousQuestionRightAnswerId);
-	this.$labelReponseCorrecte = $("#" + labelReponseCorrecteId);
 	this.textQuestion = document.getElementById(textQuestionId);
 	this.inputAnswer = document.getElementById(inputAnswerId);
 	this.textScore = textScore;
@@ -273,12 +272,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 		}
 	}
 
-	/*
-	for (var i = 0; i < quizzSessionSize; i++) {
-	this.quizzSessionItemArray.push(itemArray[Math.floor(Math.random()*itemArray.length)]);
-	}		
-	*/
-
 	this.evaluateAnswer = function()
 	{
 
@@ -292,7 +285,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				//cas réponse bonne 
 				this.$textPreviousAnswer.text(this.inputAnswer.value).removeClass( "wrongAnswer" );
 				this.$textPreviousQuestionRightAnswer.text("");
-				this.$labelReponseCorrecte.text("");
 				this.$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" ).show("slow");
 				this.textScore.countWrightAnswer();
 				currentTestItem.substractChance();
@@ -303,7 +295,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				this.$textPreviousAnswer.text(this.inputAnswer.value).addClass( "wrongAnswer" );
 				this.$textPreviousQuestionRightAnswer.text(currentTestItem.getAnswer(this.frToRo)[0]);
 				//this.textPreviousQuestionRightAnswer.innerHTML = currentTestItem.getAnswer(this.frToRo)[0];
-				this.$labelReponseCorrecte.text("Réponse correcte :");
 				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
 				this.textScore.countWrongAnswer();
 				currentTestItem.addChance();
@@ -1445,7 +1436,7 @@ success: function(jsonResult, statut) {
 
 			//var quizzJsTree = new QuizzJsTree("voctree",jsonResult);
 
-			var myQuizz = new Quizz("buttonOk", buttonSwitch, "voctree", jsonResult, "textPreviousQuestion", "textPreviousAnswer", "textQuestion", "inputAnswer", "textPreviousQuestionRightAnswer", "labelReponseCorrecte", textScore, "zoneResultat");
+			var myQuizz = new Quizz("buttonOk", buttonSwitch, "voctree", jsonResult, "textPreviousQuestion", "textPreviousAnswer", "textQuestion", "inputAnswer", "textPreviousQuestionRightAnswer", textScore, "zoneResultat");
 
 
 			myQuizz.performQuizz();
