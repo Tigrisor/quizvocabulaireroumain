@@ -8,12 +8,14 @@ footer
 #inputAnswer
 {
 	color : #777777;
-	text-align: left;
+	text-align: center;
 }
 /* voir si on ne peut pas mutualiser le 18px qqpart */
 #textQuestion
 {
+	text-align:center;
 	font-size : 18px;
+	margin-bottom : 20px;
 }
 
 #zoneResultat
