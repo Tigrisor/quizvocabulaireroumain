@@ -195,8 +195,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				lastOkId = id;
 				numberOfTestItems++;
 			}
-			//this.quizzSessionItemArray.push(itemArray[Math.floor(Math.random()*itemArray.length)]);
-
 
 		}
 
@@ -294,7 +292,6 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 				// cas réponse fausse
 				this.$textPreviousAnswer.text(this.inputAnswer.value).addClass( "wrongAnswer" );
 				this.$textPreviousQuestionRightAnswer.text(currentTestItem.getAnswer(this.frToRo)[0]);
-				//this.textPreviousQuestionRightAnswer.innerHTML = currentTestItem.getAnswer(this.frToRo)[0];
 				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
 				this.textScore.countWrongAnswer();
 				currentTestItem.addChance();
@@ -360,143 +357,143 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 
 	// on met a jour notre liste de checked (plus nécessaire si on rapatrie la liste des items dans l'arbre)
 
-	//this.quizzJsTree.triggerChecked();
-
-	//this.manageTreeChange();    
-
 	this.quizzJsTree.bindMeToCheckEvent(this.manageTreeChange);
 }
 
+// représente un bouton permettant d'ajouter un caractère spécial
+function buttonSpecialChar(specialChar)
+{
 /*
-//représente un ensemble d'input de touches
-function Config() {
+	this.$divElement = $(document.createElement('div')).attr({
+		class: "input-group col-xs-2"
+	});
 
-	var myConfig = this;
+	//on crée l'input et on set ses attributs
+	this.$inputKeyElement = $(document.createElement('input')).attr({
+type: "text",
+class: "form-control",
+style: "text-align:left"
+	});
 
-	this.quizzSessionItemArray = [];
+	//on set la value par défaut
+	this.$inputKeyElement.val(defaultValue);
 
-	this.addKeyConfig = function(newKeyConfig) {
-		this.quizzSessionItemArray.push(newKeyConfig);
+	//on crée le span et on lui ajoute l'input
+	this.$spanElement = $(document.createElement('span')).text(targetChar).attr({
+class:"input-group-addon"
+	});
+	//on ajoute le caractère
+	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
 
-
-		newKeyConfig.inputKey.addEventListener('keyup', this.onKeyUp, false);
-		newKeyConfig.inputKey.addEventListener('focus', this.onGetFocus, false);
-		newKeyConfig.inputKey.addEventListener('blur', this.onBlur, false);
-
+	//on ajoute l'input
+	this.addInElement = function(containerId)
+	{
+		$("#" + containerId).append(this.$divElement);
 	};
 
+	var myKeyConfig = this;
 
-	this.findKeyConfig = function(elementTarget)
+	this.targetChar = targetChar;
+
+	this.keyValue = defaultValue;
+
+	//compare l'objet en param a l'objet courant
+	this.isSameElement = function(elementToCompare)
 	{
-
-		for (var i = 0; i < this.quizzSessionItemArray.length; i++) {
-
-
-			if (this.quizzSessionItemArray[i].isSameElement(elementTarget))
-			{
-				return this.quizzSessionItemArray[i];
-			}
-
-		}
-
+		return (elementToCompare === myKeyConfig.$inputKeyElement[0]);
 	};
 
 	this.getReplacementChar = function(enteredChar) {
 
-		var replacedChar = enteredChar;
-
-		for (var i = 0; i < this.quizzSessionItemArray.length && replacedChar == enteredChar; i++) {
-
-			replacedChar = this.quizzSessionItemArray[i].getReplacementChar(enteredChar);//replaceConfChar(stringValueresult);		
-
-		}
-
-		return replacedChar;
-	};
-
-
-	this.onKeyUp = function(e) {
-
-		var keyConfigTarget = myConfig.findKeyConfig(e.target);
-
-		console.log("onKeyUp");
-
-		// n'a pas l'air de fonctionner pour éviter les touches shift, ctrl, etc
-		if ((String.fromCharCode(e.keyCode)).length == 1)
+		if (enteredChar === this.keyValue)
 		{
-
-			console.log("caractère rentré" + String.fromCharCode(e.keyCode));
-
-			keyConfigTarget.inputKey.blur();
-
-		}
-	};
-
-	// quand on prend le focus, on efface l'intérieur de l'input
-	this.onGetFocus = function(e) {
-
-		var keyConfigTarget = myConfig.findKeyConfig(e.target);
-
-		console.log("onGetFocus");
-		keyConfigTarget.inputKey.value = "";
-
-	};
-
-	// si on perds le focus sans que rien ne soit rentré, on restore la précédente valeur
-	this.onBlur = function(e) {
-
-		var keyConfigTarget = myConfig.findKeyConfig(e.target);
-
-		console.log("onBlur");
-
-		if (keyConfigTarget.inputKey.value.length != 1)//|| myConfig.isKeyAlreadyUsed(keyConfigTarget.inputKey.value, keyConfigTarget))
-		{
-			//cas ou la valeur rentrée est incorrecte -> restoration de l'ancienne valeur
-			keyConfigTarget.inputKey.value = keyConfigTarget.keyValue;
+			return this.targetChar;
 		}
 		else
 		{
-			//cas ou la valeur rentrée est correcte
-
-			if (!myConfig.swapKeyIfAlreadyUsed(keyConfigTarget.inputKey.value, keyConfigTarget))
-			{
-				keyConfigTarget.keyValue = keyConfigTarget.inputKey.value;
-			}
-
-			console.log("new key : " + myConfig.findKeyConfig(e.target).keyValue);
+			return enteredChar;
 		}
 
 	};
 
-	this.swapKeyIfAlreadyUsed = function(keyValue, keyConfigTarget) {
-
-		for (var i = 0; i < this.quizzSessionItemArray.length; i++) {
-
-
-			if (keyConfigTarget != this.quizzSessionItemArray[i])
-			{
-
-				if (this.quizzSessionItemArray[i].isSamekeyValue(keyValue))//keyValue == this.quizzSessionItemArray[i].keyValue)
-				{
-					console.log("déja utilisé !");
-
-					var keyConfigTemp = keyConfigTarget.getKeyValue();
-
-					keyConfigTarget.setKeyValue(this.quizzSessionItemArray[i].getKeyValue());
-
-					this.quizzSessionItemArray[i].setKeyValue(keyConfigTemp);
-
-					return true;
-				}
-
-			}
-
-		}
-
+	this.isSamekeyValue = function(keyValueToCompare)
+	{
+		return (this.keyValue === keyValueToCompare);
 	};
 
+	this.setKeyValue = function(keyValueToSet)
+	{
+		this.keyValue = keyValueToSet;
+		this.$inputKeyElement.val(keyValueToSet);
+	};
+
+	this.getKeyValue = function()
+	{
+		return this.keyValue;
+	};
+
+	this.bindToKeyUp = function(functionToBind)
+	{
+		this.$inputKeyElement.keyup(functionToBind);
+	};
+
+	this.bindToFocus = function(functionToBind)
+	{
+		this.$inputKeyElement.focus(functionToBind);
+	};
+
+	this.bindToBlur = function(functionToBind)
+	{
+		this.$inputKeyElement.blur(functionToBind);
+	};
+
+	this.blur = function()
+	{
+		this.$inputKeyElement.blur();
+	};
+
+	this.getInputElementValue = function()
+	{
+		return this.$inputKeyElement.val();
+	};
+
+	this.setInputElementValue = function(valueToSet)
+	{
+		this.$inputKeyElement.val(valueToSet);
+	};
+	
+	this.isInputElementValueNotOneCharacterLength = function()
+	{
+		return this.getInputElementValue().length !== 1;
+	};
+	
+	this.restoreValueInElement = function()
+	{
+		this.setInputElementValue(this.keyValue);
+	};
+	*/
 }
-*/
+
+
+//représente un ensemble de boutons de caractères spéciaux
+function ButtonsSpecialChar(containerId) {
+	
+	this.containerId = containerId;
+	
+	//this.$container = $('#'+containerId)
+	
+	this.buttonsSpecialCharArray = [];
+	
+	this.addButton = function(specialChar) {
+		
+		var buttonSpecialChar = new buttonSpecialChar(specialChar);
+		this.quizzSessionItemArray.push(buttonSpecialChar);
+		//todo : ajouter le code en s'inspirant d'en dessous
+		
+		newKeyConfig.addInElement(this.containerId);
+		
+	}
+}
 
 //représente un ensemble d'input de touches
 function ConfigGenerique(containerId) {
@@ -518,10 +515,6 @@ function ConfigGenerique(containerId) {
 		newKeyConfig.bindToBlur(this.onBlur);
 		
 		newKeyConfig.addInElement(this.containerId);
-
-		//newKeyConfig.inputKey.addEventListener('keyup', this.onKeyUp, false);
-		//newKeyConfig.inputKey.addEventListener('focus', this.onGetFocus, false);
-		//newKeyConfig.inputKey.addEventListener('blur', this.onBlur, false);
 
 	};
 
@@ -581,9 +574,6 @@ function ConfigGenerique(containerId) {
 
 		keyConfigTarget.setInputElementValue("");
 
-
-		//keyConfigTarget.inputKey.value = "";
-
 	};
 
 	// si on perds le focus sans que rien ne soit rentré, on restore la précédente valeur
@@ -593,12 +583,10 @@ function ConfigGenerique(containerId) {
 
 		console.log("onBlur");
 
-		if (keyConfigTarget.isInputElementValueNotOneCharacterLength() )//|| myConfig.isKeyAlreadyUsed(keyConfigTarget.inputKey.value, keyConfigTarget))
+		if (keyConfigTarget.isInputElementValueNotOneCharacterLength() )
 		{
 			//cas ou la valeur rentrée est incorrecte -> restoration de l'ancienne valeur
-			
 			keyConfigTarget.restoreValueInElement();
-			//keyConfigTarget.inputKey.value = keyConfigTarget.keyValue;
 		}
 		else
 		{
@@ -607,7 +595,6 @@ function ConfigGenerique(containerId) {
 			if (!myConfig.swapKeyIfAlreadyUsed(keyConfigTarget))
 			{
 				keyConfigTarget.setKeyValue(keyConfigTarget.getInputElementValue());
-				//keyConfigTarget.keyValue = ;
 			}
 
 			console.log("new key : " + myConfig.findKeyConfig(e.target).keyValue);
@@ -646,33 +633,6 @@ function ConfigGenerique(containerId) {
 
 }
 
-/*
-
-<span>
-ă
-<input class="inputkey" id="inputKeyACorne" type="text" size="1" />
-</span>
-
-
-$(document.createElement('div'))
-<input class="inputkey" id="inputKeyACorne" type="text"
-
-pour insérer au début:
-$('span').prepend('balise span » ')
-
-pour setter un attribut :
-$('div.header_gauche img').attr('title','le Site du Zér0');
-
-$('img').attr({
-title : 'Mes photos de vacances',
-alt : 'Ceci est une image',
-src : 'vacances.jpg'
-});
-
-*/
-
-
-
 
 // représente un input de touche
 function KeyConfigGenerique(defaultValue, targetChar)
@@ -694,15 +654,12 @@ style: "text-align:left"
 
 	//on crée le span et on lui ajoute l'input
 	this.$spanElement = $(document.createElement('span')).text(targetChar).attr({
-//class: "keyConfig"
 class:"input-group-addon"
 	});
 	//on ajoute le caractère
 	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
-	//this.$spanElement.prepend(targetChar).append(this.$inputKeyElement);
-	//on ajoute l'input
-	//this.$spanElement.append(this.$inputKeyElement);
 
+	//on ajoute l'input
 	this.addInElement = function(containerId)
 	{
 		$("#" + containerId).append(this.$divElement);
@@ -712,20 +669,12 @@ class:"input-group-addon"
 
 	this.targetChar = targetChar;
 
-	//this.inputKey = document.getElementById(inputKeyId);
-
 	this.keyValue = defaultValue;
-
-	//this.inputKey.value = defaultValue;
 
 	//compare l'objet en param a l'objet courant
 	this.isSameElement = function(elementToCompare)
 	{
-		//console.log("element : "+ myKeyConfig.inputKey);
-		//console.log("comparaison : "+ (elementToCompare == myKeyConfig.inputKey));
-
 		return (elementToCompare === myKeyConfig.$inputKeyElement[0]);
-
 	};
 
 	this.getReplacementChar = function(enteredChar) {
@@ -749,9 +698,7 @@ class:"input-group-addon"
 	this.setKeyValue = function(keyValueToSet)
 	{
 		this.keyValue = keyValueToSet;
-		//this.$inputKeyElement.attr("value", keyValueToSet);
 		this.$inputKeyElement.val(keyValueToSet);
-		//this.inputKey.value = keyValueToSet;
 	};
 
 	this.getKeyValue = function()
@@ -781,7 +728,6 @@ class:"input-group-addon"
 
 	this.getInputElementValue = function()
 	{
-		//return this.$inputKeyElement.attr("value");
 		return this.$inputKeyElement.val();
 	};
 
@@ -798,67 +744,10 @@ class:"input-group-addon"
 	this.restoreValueInElement = function()
 	{
 		this.setInputElementValue(this.keyValue);
-		//this.$inputKeyElement.attr("value",this.keyValue);
 	};
 	
 }
 
-
-/*
-// représente un input de touche
-function KeyConfig(defaultValue, inputKeyId, targetChar)
-{
-
-	var myKeyConfig = this;
-
-	this.targetChar = targetChar;
-
-	this.inputKey = document.getElementById(inputKeyId);
-
-	this.keyValue = defaultValue;
-
-	this.inputKey.value = defaultValue;
-
-	this.isSameElement = function(elementToCompare)
-	{
-		//console.log("element : "+ myKeyConfig.inputKey);
-		//console.log("comparaison : "+ (elementToCompare == myKeyConfig.inputKey));
-
-		return (elementToCompare == myKeyConfig.inputKey);
-
-	};
-
-	this.getReplacementChar = function(enteredChar) {
-
-		if (enteredChar == this.keyValue)
-		{
-			return this.targetChar;
-		}
-		else
-		{
-			return enteredChar;
-		}
-
-	};
-
-	this.isSamekeyValue = function(keyValueToCompare)
-	{
-		return (this.keyValue == keyValueToCompare);
-	};
-
-	this.setKeyValue = function(keyValueToSet)
-	{
-		this.keyValue = keyValueToSet;
-		this.inputKey.value = keyValueToSet;
-	};
-
-	this.getKeyValue = function()
-	{
-		return this.keyValue;
-	};
-
-}
-*/
 
 //représente l'input de réponse
 function InputAnswer(inputAnswerId, configInstance)
@@ -868,31 +757,12 @@ function InputAnswer(inputAnswerId, configInstance)
 	this.inputAnswerElement = document.getElementById(inputAnswerId);
 	this.keyConfig = configInstance;
 
-	/*
-	this.onKeyUp = function (e) {
-	
-	console.log("valeur :"+e.target.value);
-	
-	
-	var newValue = myInputAnswer.keyConfig.replaceConfChars(e.target.value);
-	
-	if(newValue != e.target.value)
-	{
-	e.target.value = newValue;
-	}
-	
-	}
-	*/
-
 
 	this.onKeyDown = function(e) {
 		//todo : traquer les keycode dans les inputs de config de touche
 		var enteredChar = String.fromCharCode(e.which);
 
-
 		var newChar = myInputAnswer.keyConfig.getReplacementChar(enteredChar);
-		//replaceConfChars(e.target.value);
-
 
 		if (newChar != enteredChar)
 		{
@@ -912,10 +782,7 @@ function InputAnswer(inputAnswerId, configInstance)
 
 	};
 
-
-	//this.inputAnswerElement.addEventListener('keyup', this.onKeyUp, false);
 	this.inputAnswerElement.addEventListener('keypress', this.onKeyDown, false);
-
 
 }
 
@@ -923,34 +790,14 @@ function InputAnswer(inputAnswerId, configInstance)
 //représente le bouton de choix fr->ro / ro->fr
 function ButtonSwitch(buttonSwitchId, imageButtonId)
 {
-	/*
-	$("#"+buttonSwitchId);
-	$('p').each(function(){
-	
-	$(this).html('Hello World !'); // $(this) représente le paragraphe courant
-	
-	});
-	$('img').attr('title', 'Nouvelle photo');
-	
-	$("#uneDiv").click(function(){
-	// Le code a exécuter !
-	});
-	
-	*/
-	//$('p > .lien');
 
 	var myButtonSwitch = this;
 
-	this.buttonSwitch = $("#" + buttonSwitchId);//document.getElementById(buttonSwitchId);
-	//this.imageButton=document.getElementById(imageButtonId);
+	this.buttonSwitch = $("#" + buttonSwitchId);
 	this.buttonSpan = $("#" + buttonSwitchId + " span ");
 
 	this.frToRo = true;
 
-	//myButtonSwitch.imageButton.src = "frtoro.png";
-	//myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
-	//this.buttonSpan.attr("innerHTML", "fr > ro");
-	//this.buttonSpan.html("fr > ro");
 	this.buttonSwitch.text("fr > ro")
 
 	this.listOfBindedFunctionToClickEvent = [];
@@ -959,7 +806,6 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 	this.bindMeToClickEvent = function(functionToBind)
 	{
 		this.listOfBindedFunctionToClickEvent.push(functionToBind);
-		//this.myJSTree.bind('change_state.jstree', functionToBind);
 	};
 
 
@@ -974,20 +820,12 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 		if (myButtonSwitch.frToRo)
 		{
 			myButtonSwitch.frToRo = false;
-			//myButtonSwitch.buttonSwitch.innerHTML = "ro > fr";
 			myButtonSwitch.buttonSwitch.text("ro > fr")
-			//myButtonSwitch.buttonSpan.attr("innerHTML", "ro > fr");
-			//myButtonSwitch.buttonSpan.html("ro > fr");
-			//myButtonSwitch.imageButton.src = "rotofr.png";
 		}
 		else
 		{
 			myButtonSwitch.frToRo = true;
-			//myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
 			myButtonSwitch.buttonSwitch.text("fr > ro")
-			//myButtonSwitch.buttonSpan.attr("innerHTML", "fr > ro");
-			//myButtonSwitch.buttonSpan.html("fr > ro");
-			//myButtonSwitch.imageButton.src = "frtoro.png";
 		}
 
 		for (var j = 0; j < myButtonSwitch.listOfBindedFunctionToClickEvent.length; j++) {
@@ -999,85 +837,10 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 
 	};
 
-	//this.onClick();
-
 	this.buttonSwitch.click(this.onClick);
 
-	//this.buttonSwitch.addEventListener('click', this.onClick, false);
-
 }
 
-
-/*
-//représente le bouton de choix fr->ro / ro->fr
-function ButtonSwitch(buttonSwitchId, imageButtonId)
-{
-
-$("#"+buttonSwitchId);
-$('p').each(function(){
-
-$(this).html('Hello World !'); // $(this) représente le paragraphe courant
-
-});
-$('img').attr('title', 'Nouvelle photo');
-//$('p > .lien');
-
-var myButtonSwitch = this;
-
-this.buttonSwitch=document.getElementById(buttonSwitchId);
-this.imageButton=document.getElementById(imageButtonId);
-
-this.frToRo=true;
-
-//myButtonSwitch.imageButton.src = "frtoro.png";
-myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
-this.listOfBindedFunctionToClickEvent = [];
-
-// abonne des fonctions a l'evt de check/uncheck
-this.bindMeToClickEvent = function(functionToBind)
-{
-this.listOfBindedFunctionToClickEvent.push(functionToBind);
-//this.myJSTree.bind('change_state.jstree', functionToBind);
-}   
-
-
-this.getFrToRo = function()
-{
-return this.frToRo;
-}
-
-this.onClick = function()
-{
-console.log("onClick");
-if(myButtonSwitch.frToRo)
-{
-myButtonSwitch.frToRo = false;
-myButtonSwitch.buttonSwitch.innerHTML = "ro > fr";
-//myButtonSwitch.imageButton.src = "rotofr.png";
-}
-else
-{
-myButtonSwitch.frToRo = true;
-myButtonSwitch.buttonSwitch.innerHTML = "fr > ro";
-//myButtonSwitch.imageButton.src = "frtoro.png";
-}
-
-for (var j = 0; j < myButtonSwitch.listOfBindedFunctionToClickEvent.length; j++) {    
-
-myButtonSwitch.listOfBindedFunctionToClickEvent[j]();
-
-}
-
-
-}
-
-//this.onClick();
-
-this.buttonSwitch.addEventListener('click', this.onClick, false);
-
-}
-
-*/
 
 // représente le score
 function TextScore(textScoreId)

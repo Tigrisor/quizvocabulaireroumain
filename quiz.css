@@ -34,3 +34,14 @@ footer
     text-decoration:line-through;
 }
 
+#textScoreTitle
+{
+	text-align:right;
+}
+/* utilisé pour avoir le score a droite dans le titre du test*/
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
