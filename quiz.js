@@ -495,6 +495,126 @@ function ButtonsSpecialChar(containerId) {
 	}
 }
 
+
+//représente un bouton de caractère spécial
+function buttonSpecialChar(defaultValue, targetChar)
+{
+	
+	this.$buttonCharSpe = $(document.createElement('button')).attr({
+		type:"button",
+		class="btn btn-primary"
+	});
+/*
+	this.$divElement = $(document.createElement('div')).attr({
+		class: "input-group col-xs-2"
+	});
+
+	//on crée l'input et on set ses attributs
+	this.$inputKeyElement = $(document.createElement('input')).attr({
+type: "text",
+class: "form-control",
+style: "text-align:left"
+	});
+
+	//on set la value par défaut
+	this.$inputKeyElement.val(defaultValue);
+
+	//on crée le span et on lui ajoute l'input
+	this.$spanElement = $(document.createElement('span')).text(targetChar).attr({
+class:"input-group-addon"
+	});
+	//on ajoute le caractère
+	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
+*/
+	//on ajoute l'input
+	this.addInElement = function(containerId)
+	{
+		$("#" + containerId).append(this.$buttonCharSpe);
+	};
+
+	var myKeyConfig = this;
+
+	this.targetChar = targetChar;
+
+	this.keyValue = defaultValue;
+
+	//compare l'objet en param a l'objet courant
+	this.isSameElement = function(elementToCompare)
+	{
+		return (elementToCompare === myKeyConfig.$inputKeyElement[0]);
+	};
+
+	this.getReplacementChar = function(enteredChar) {
+
+		if (enteredChar === this.keyValue)
+		{
+			return this.targetChar;
+		}
+		else
+		{
+			return enteredChar;
+		}
+
+	};
+
+	this.isSamekeyValue = function(keyValueToCompare)
+	{
+		return (this.keyValue === keyValueToCompare);
+	};
+
+	this.setKeyValue = function(keyValueToSet)
+	{
+		this.keyValue = keyValueToSet;
+		this.$inputKeyElement.val(keyValueToSet);
+	};
+
+	this.getKeyValue = function()
+	{
+		return this.keyValue;
+	};
+
+	this.bindToKeyUp = function(functionToBind)
+	{
+		this.$inputKeyElement.keyup(functionToBind);
+	};
+
+	this.bindToFocus = function(functionToBind)
+	{
+		this.$inputKeyElement.focus(functionToBind);
+	};
+
+	this.bindToBlur = function(functionToBind)
+	{
+		this.$inputKeyElement.blur(functionToBind);
+	};
+
+	this.blur = function()
+	{
+		this.$inputKeyElement.blur();
+	};
+
+	this.getInputElementValue = function()
+	{
+		return this.$inputKeyElement.val();
+	};
+
+	this.setInputElementValue = function(valueToSet)
+	{
+		this.$inputKeyElement.val(valueToSet);
+	};
+	
+	this.isInputElementValueNotOneCharacterLength = function()
+	{
+		return this.getInputElementValue().length !== 1;
+	};
+	
+	this.restoreValueInElement = function()
+	{
+		this.setInputElementValue(this.keyValue);
+	};
+	
+}
+
 //représente un ensemble d'input de touches
 function ConfigGenerique(containerId) {
 
