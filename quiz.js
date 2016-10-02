@@ -360,15 +360,56 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 	this.quizzJsTree.bindMeToCheckEvent(this.manageTreeChange);
 }
 
+// todo a virer
+//représente un ensemble de boutons de caractères spéciaux
+function ButtonsSpecialChar(containerId, inputAnswerId) {
+	
+	var myButtonsSpecialChar = this;	
+	this.containerId = containerId;	
+	this.inputAnswerId = inputAnswerId;
+	
+	
+	//this.$container = $('#'+containerId)
+	
+	this.buttonsSpecialCharArray = [];
+	
+	this.addButton = function(specialChar) {
+		
+		var buttonSpecialChar = new ButtonSpecialChar(specialChar, myButtonsSpecialChar.containerId, myButtonsSpecialChar.inputAnswerId);
+		//this.quizzSessionItemArray.push(buttonSpecialChar);
+		//todo : ajouter le code en s'inspirant d'en dessous
+		
+		buttonSpecialChar.addInElement(this.containerId);
+		
+	}
+}
 
 // représente un bouton permettant d'ajouter un caractère spécial
-function ButtonSpecialChar(specialChar)
+function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 {
+	
+	var myButtonSpecialChar = this;
+	this.$inputAnswer = $('#'+inputAnswer);
+	
+	// handler du clic sur le bouton de charactère spécial
+	this.clickOnSpeCharButtonHandler = function()
+	{
+		// on insère le caractère spécial dans l'input au niveau du curseur
+		// todo a terminer
+		
+		$("#" + inputAnswerId).append(this.$buttonCharSpe);
+	};
+	
 	
 	this.$buttonCharSpe = $(document.createElement('button')).attr({
 		type:"button",
 		class:"btn btn-primary btn-lg"
-	}).text(specialChar);
+	}).text(specialChar).click(this.clickOnSpeCharButtonHandler);
+	
+	// on ajoute le bouton au container
+	$("#" + containerId).append(this.$buttonCharSpe);
+
+	
 	
 
 		//value:specialChar
@@ -397,10 +438,10 @@ class:"input-group-addon"
 	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
 */
 	//on ajoute l'input
-	this.addInElement = function(containerId)
+	/*this.addInElement = function(containerId)
 	{
 		$("#" + containerId).append(this.$buttonCharSpe);
-	};
+	};*/
 
 	var myButtonSpecialChar = this;
 
@@ -484,26 +525,6 @@ class:"input-group-addon"
 		this.setInputElementValue(this.keyValue);
 	};*/
 	
-}
-
-//représente un ensemble de boutons de caractères spéciaux
-function ButtonsSpecialChar(containerId) {
-	
-	this.containerId = containerId;
-	
-	//this.$container = $('#'+containerId)
-	
-	this.buttonsSpecialCharArray = [];
-	
-	this.addButton = function(specialChar) {
-		
-		var buttonSpecialChar = new ButtonSpecialChar(specialChar);
-		//this.quizzSessionItemArray.push(buttonSpecialChar);
-		//todo : ajouter le code en s'inspirant d'en dessous
-		
-		buttonSpecialChar.addInElement(this.containerId);
-		
-	}
 }
 
 //représente un ensemble d'input de touches
@@ -925,7 +946,7 @@ configGenerique.addKeyConfig("(", "ț");
 configGenerique.addKeyConfig("<", "ș");
 configGenerique.addKeyConfig("\"", "â");
 
-var buttonsSpecialChar = new ButtonsSpecialChar("buttonsSpecialChar");
+var buttonsSpecialChar = new ButtonsSpecialChar("buttonsSpecialChar","inputAnswer");
 
 buttonsSpecialChar.addButton("ă");
 buttonsSpecialChar.addButton("î");
