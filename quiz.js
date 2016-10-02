@@ -379,7 +379,7 @@ function ButtonsSpecialChar(containerId, inputAnswerId) {
 		//this.quizzSessionItemArray.push(buttonSpecialChar);
 		//todo : ajouter le code en s'inspirant d'en dessous
 		
-		buttonSpecialChar.addInElement(this.containerId);
+		//buttonSpecialChar.addInElement(this.containerId);
 		
 	}
 }
@@ -389,7 +389,8 @@ function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 {
 	
 	var myButtonSpecialChar = this;
-	this.$inputAnswer = $('#'+inputAnswer);
+	this.$inputAnswer = $('#'+inputAnswerId);
+	this.specialChar = specialChar;
 	
 	// handler du clic sur le bouton de charactère spécial
 	this.clickOnSpeCharButtonHandler = function()
@@ -397,7 +398,10 @@ function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 		// on insère le caractère spécial dans l'input au niveau du curseur
 		// todo a terminer
 		
-		$("#" + inputAnswerId).append(this.$buttonCharSpe);
+		//myButtonSpecialChar.$inputAnswer.val(myButtonSpecialChar.$inputAnswer.val()+specialChar);
+		myButtonSpecialChar.$inputAnswer.caret(specialChar);
+		myButtonSpecialChar.$inputAnswer.focus();
+		
 	};
 	
 	
@@ -443,7 +447,7 @@ class:"input-group-addon"
 		$("#" + containerId).append(this.$buttonCharSpe);
 	};*/
 
-	var myButtonSpecialChar = this;
+	//var myButtonSpecialChar = this;
 
 	//this.targetChar = targetChar;
 
@@ -946,13 +950,22 @@ configGenerique.addKeyConfig("(", "ț");
 configGenerique.addKeyConfig("<", "ș");
 configGenerique.addKeyConfig("\"", "â");
 
-var buttonsSpecialChar = new ButtonsSpecialChar("buttonsSpecialChar","inputAnswer");
+
+/*var buttonsSpecialChar = new ButtonsSpecialChar("buttonsSpecialChar","inputAnswer");
 
 buttonsSpecialChar.addButton("ă");
 buttonsSpecialChar.addButton("î");
 buttonsSpecialChar.addButton("ț");
 buttonsSpecialChar.addButton("ș");
-buttonsSpecialChar.addButton("â");
+buttonsSpecialChar.addButton("â");*/
+
+new ButtonSpecialChar("ă", "buttonsSpecialChar", "inputAnswer");
+new ButtonSpecialChar("î", "buttonsSpecialChar", "inputAnswer");
+new ButtonSpecialChar("ț", "buttonsSpecialChar", "inputAnswer");
+new ButtonSpecialChar("ș", "buttonsSpecialChar", "inputAnswer");
+new ButtonSpecialChar("â", "buttonsSpecialChar", "inputAnswer");
+
+
 
 var myInputAnswer = new InputAnswer("inputAnswer", configGenerique);
 
