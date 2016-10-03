@@ -118,7 +118,9 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 	this.$textPreviousAnswer = $("#" + textPreviousAnswerId);
 	this.$textPreviousQuestionRightAnswer = $("#" + textPreviousQuestionRightAnswerId);
 	this.textQuestion = document.getElementById(textQuestionId);
+	// todo : remplacer inputAnswer par $inputAnswer
 	this.inputAnswer = document.getElementById(inputAnswerId);
+	this.$inputAnswer = $("#"+inputAnswerId);
 	this.textScore = textScore;
 	this.buttonOk = $("#" + buttonOkId);
 	this.$zoneResultat = $("#" + zoneResultatId)
@@ -348,6 +350,7 @@ function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPrevious
 	{
 		myQuizz.evaluateAnswer();
 		myQuizz.askNextQuestion();
+		myQuizz.$inputAnswer.focus();
 	};
 
 	//abonnement aux évènements
@@ -791,6 +794,7 @@ function InputAnswer(inputAnswerId, configInstance)
 	var myInputAnswer = this;
 
 	this.inputAnswerElement = document.getElementById(inputAnswerId);
+	this.$myInputAnswer = $('#'+inputAnswerId);
 	this.keyConfig = configInstance;
 
 
@@ -806,14 +810,17 @@ function InputAnswer(inputAnswerId, configInstance)
 
 			//*****************
 			// non supporté par ie -> http://alexking.org/blog/2003/06/02/inserting-at-the-cursor-using-javascript
-			var startPos = myInputAnswer.inputAnswerElement.selectionStart;
+			/*var startPos = myInputAnswer.inputAnswerElement.selectionStart;
 			var endPos = myInputAnswer.inputAnswerElement.selectionEnd;
-			myInputAnswer.inputAnswerElement.value = myInputAnswer.inputAnswerElement.value.substring(0, startPos) + newChar + myInputAnswer.inputAnswerElement.value.substring(endPos, myInputAnswer.inputAnswerElement.value.length);
+			myInputAnswer.inputAnswerElement.value = myInputAnswer.inputAnswerElement.value.substring(0, startPos) + newChar + myInputAnswer.inputAnswerElement.value.substring(endPos, myInputAnswer.inputAnswerElement.value.length);*/
 
 			//******************
+			
+			myInputAnswer.$myInputAnswer.caret(newChar);
+			
 
-			myInputAnswer.inputAnswerElement.selectionStart = startPos + 1;
-			myInputAnswer.inputAnswerElement.selectionEnd = endPos + 1;
+			/*myInputAnswer.inputAnswerElement.selectionStart = startPos + 1;
+			myInputAnswer.inputAnswerElement.selectionEnd = endPos + 1;*/
 		}
 
 	};
