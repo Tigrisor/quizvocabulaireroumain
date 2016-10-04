@@ -5,8 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- BS -->
 			<meta name="viewport" content="width=device-width, initial-scale=1"> <!-- BS -->
 
-			<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" >
-				
+				<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" >
+
 					<meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
 					<meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
 
@@ -47,6 +47,25 @@
 </script>-->
 
 							<div class="container">
+
+								<div class="modal" id="modalAccueil">
+									<div class="modal-dialog">
+										<div class="modal-content">
+											<div class="modal-header">
+												<!--<button type="button" class="close" data-dismiss="modal">x</button>-->
+												<h4 class="modal-title">Bienvenue !</h4>
+											</div>
+											<div class="modal-body">
+											Apprenez le vocabulaire de la langue roumaine grâce à ce quiz.
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary" data-dismiss="modal">Ok !</button>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
 								<header class="page-header">
 									<h1>Quiz pour apprendre le vocabulaire roumain</h1>
 								</header>
@@ -57,8 +76,8 @@
 												<div class="panel panel-primary">
 													<div class="panel-heading">
 														<h3 class="panel-title">
-														<span>Test</span><span class="alignright"><span>score : </span><span id="textScore"></span></span>
-														<div style="clear: both;"></div> <!-- pour le clear du float -->
+															<span>Test</span><span class="alignright"><span>score : </span><span id="textScore"></span></span>
+															<div style="clear: both;"></div> <!-- pour le clear du float -->
 														</h3>
 													</div>
 													<div class="panel-body">
@@ -83,11 +102,11 @@
 														</div>
 														<div class="row">
 															<!--<span id="textQuestion" class="leftTestItem"></span>-->
-														
+
 															<div class="form-group" >															
-															<!-- form-group : espacement entre les inputs d'un formulaire -->																														
-															<!--<label id="textQuestion" for="inputAnswer" ></label>-->
-															<div id="textQuestion" class="col-xs-offset-1 col-xs-10"></div>
+																<!-- form-group : espacement entre les inputs d'un formulaire -->																														
+																<!--<label id="textQuestion" for="inputAnswer" ></label>-->
+																<div id="textQuestion" class="col-xs-offset-1 col-xs-10"></div>
 																<div id="inputAnswerGroup" class="input-group col-xs-offset-1 col-xs-10"> 																
 																	<!--<span id="textQuestion" class="input-group-addon"></span> -->
 																	<!--  style="text-align:right" text-center-->
@@ -97,9 +116,9 @@
 																	</span>
 																</div>
 															</div>
-															
+
 															<div id="buttonsSpecialChar" class="col-xs-offset-1 col-xs-10">
-															<!-- <div id="buttonsSpecialChar"></div> -->
+																<!-- <div id="buttonsSpecialChar"></div> -->
 															</div>
 
 														</div>
@@ -115,21 +134,21 @@
 													</div>
 													<div class="panel-body">
 														<p>
-															<form  class="form-inline">
+															<form  class="form-inline hidden-xs">
 																<legend>Configuration des touches</legend>
 																<!-- ăîțâș -->
 
 																<table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Caractère</th>
-        <th>Touche associée</th>
-      </tr>
-    </thead>
-    <tbody id="inputKeys">
-    </tbody>
-  </table>
-																
+																	<thead>
+																		<tr>
+																			<th>Caractère</th>
+																			<th>Touche associée</th>
+																		</tr>
+																	</thead>
+																	<tbody id="inputKeys">
+																	</tbody>
+																</table>
+
 															</form>
 														</p>
 														<p>
@@ -193,7 +212,7 @@
 
 							<!-- Jstree -->
 							<script type="text/javascript" src="js/jstree-v.pre1.0/jquery.jstree.js"></script>
-							
+
 							<!-- JQuery caret (gérer curseur dans input)-->
 							<script type="text/javascript" src="js/jquery.caret-1.5.2.min.js"></script>
 

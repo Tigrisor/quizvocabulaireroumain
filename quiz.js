@@ -678,7 +678,8 @@ function KeyConfigGenerique(defaultValue, targetChar)
 {
 	//on crée l'input et on set ses attributs
 	this.$inputKeyElement = $(document.createElement('input')).attr({
-type: "text"
+type: "text",
+class: "form-control"
 	});
 		//on set la value par défaut
 	this.$inputKeyElement.val(defaultValue);
@@ -1320,6 +1321,7 @@ complete: function(resultat, statut) {
 jQuery(function()
 {
 	sendGetListRequest(); //commenté pour offline 
+	$('#modalAccueil').modal('show');
 }
 );
 
