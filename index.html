@@ -71,7 +71,6 @@
 
 														</div>
 														<div class="row">
-
 															<div id="zoneResultat" class="alert alert-success col-xs-offset-1 col-xs-10" style="display:none">
 																<!--<span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span>-->
 																<div id="textPreviousQuestion"></div><div id="textPreviousQuestionRightAnswer"></div><div id="textPreviousAnswer"></div>
@@ -100,6 +99,7 @@
 															</div>
 															
 															<div id="buttonsSpecialChar" class="col-xs-offset-1 col-xs-10">
+															<!-- <div id="buttonsSpecialChar"></div> -->
 															</div>
 
 														</div>
@@ -115,32 +115,21 @@
 													</div>
 													<div class="panel-body">
 														<p>
-															<form id="inputKeys" class="form-inline">
+															<form  class="form-inline">
 																<legend>Configuration des touches</legend>
 																<!-- ăîțâș -->
-																<!--
-                <span>
-                    ă
-                    <input class="inputkey" id="inputKeyACorne" type="text" />
-                </span>
-                <span>
-                    ș
-                    <input class="inputkey" id="inputKeySCedille" type="text" />
-                </span>
-                <span>
-                    î
-                    <input id="inputKeyIChapeau" type="text" />
-                </span>
-                <span>
-                    â
-                    <input id="inputKeyAChapeau" type="text" />
-                </span>
-                <span>
-                    ț
-                    <input id="inputKeyTCedille" type="text" />
-                </span>
 
-            </div> -->
+																<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Caractère</th>
+        <th>Touche associée</th>
+      </tr>
+    </thead>
+    <tbody id="inputKeys">
+    </tbody>
+  </table>
+																
 															</form>
 														</p>
 														<p>

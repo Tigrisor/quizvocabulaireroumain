@@ -410,7 +410,7 @@ function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 	
 	this.$buttonCharSpe = $(document.createElement('button')).attr({
 		type:"button",
-		class:"btn btn-primary btn-lg"
+		class:"btn btn-primary btn-lg buttonCharSpe"
 	}).text(specialChar).click(this.clickOnSpeCharButtonHandler);
 	
 	// on ajoute le bouton au container
@@ -676,7 +676,22 @@ function ConfigGenerique(containerId) {
 // représente un input de touche
 function KeyConfigGenerique(defaultValue, targetChar)
 {
-
+	//on crée l'input et on set ses attributs
+	this.$inputKeyElement = $(document.createElement('input')).attr({
+type: "text"
+	});
+		//on set la value par défaut
+	this.$inputKeyElement.val(defaultValue);
+	
+	// on crée l'élément tr
+	this.$trElement = $(document.createElement('tr'))	
+	// on lui ajoute le premier élément td avec le caractère spécial
+	this.$trElement.append($(document.createElement('td')).html(targetChar));
+	// on lui ajoute le deuxième élément td avec l'input de touche
+	this.$trElement.append($(document.createElement('td')).append(this.$inputKeyElement));
+	
+	
+/*
 	this.$divElement = $(document.createElement('div')).attr({
 		class: "input-group col-xs-2"
 	});
@@ -697,11 +712,16 @@ class:"input-group-addon"
 	});
 	//on ajoute le caractère
 	this.$divElement.append(this.$spanElement).append(this.$inputKeyElement);
-
+*/
+	
+	
+	
+	
 	//on ajoute l'input
 	this.addInElement = function(containerId)
 	{
-		$("#" + containerId).append(this.$divElement);
+		$("#" + containerId).append(this.$trElement);
+		//$("#" + containerId).append(this.$divElement);
 	};
 
 	var myKeyConfig = this;
