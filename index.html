@@ -7,6 +7,7 @@
 
 				<link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" >
 
+				<!-- 156 caractères max visibles dans la page de recherche google -->
 					<meta name="description" content="Apprenez le vocabulaire de la langue roumaine grâce à ce quiz." />
 					<meta name="keywords" content="vocabulaire, apprendre, langue, roumain, quiz" />
 
@@ -56,10 +57,20 @@
 												<h4 class="modal-title">Bienvenue !</h4>
 											</div>
 											<div class="modal-body">
-											Apprenez le vocabulaire de la langue roumaine grâce à ce quiz.
+											Vous voulez apprendre du vocabulaire en roumain ?
+											<ul>
+  <li>Choisissez les mots que vous voulez apprendre piochant dans les listes de vocabulaire de diverses méthodes de langue.</li>
+  <li>Choisissez le sens du test.</li>
+  <li>Lancez-vous ! L'algorithme vous proposera plus souvent les mots pour lesquels vous avez répondu faux.</li>
+</ul>
+											
+											
+
+
+
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-primary" data-dismiss="modal">Ok !</button>
+												<button type="button" class="btn btn-primary" data-dismiss="modal">C'est parti !</button>
 											</div>
 										</div>
 									</div>
@@ -155,6 +166,15 @@
 															<form class="form-inline">
 																<legend>Sens du test</legend>
 																<button id="buttonSwitch" type="button" class="btn btn-primary"><span class="label"></span></button>
+																
+																<div class="btn-group" data-toggle="buttons">
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked>Français<span class="glyphicon glyphicon-triangle-right"></span>Roumain
+  </label>
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option2" autocomplete="off">Roumain<span class="glyphicon glyphicon-triangle-right"></span>Français
+  </label>
+</div>
 															</form>
 														</p>
 													</div>

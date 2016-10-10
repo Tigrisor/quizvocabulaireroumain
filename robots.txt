@@ -3,5 +3,5 @@
 
 User-agent: *
 Allow: /index.html
-Disallow: /quizz.html
+Disallow: /dev
 
