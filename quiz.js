@@ -409,8 +409,8 @@ function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 	
 	
 	this.$buttonCharSpe = $(document.createElement('button')).attr({
-		type:"button",
-		class:"btn btn-primary btn-lg buttonCharSpe"
+type:"button",
+class:"btn btn-primary btn-lg buttonCharSpe"
 	}).text(specialChar).click(this.clickOnSpeCharButtonHandler);
 	
 	// on ajoute le bouton au container
@@ -419,10 +419,10 @@ function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 	
 	
 
-		//value:specialChar
+	//value:specialChar
 	
 	//
-/*
+	/*
 	this.$divElement = $(document.createElement('div')).attr({
 		class: "input-group col-xs-2"
 	});
@@ -681,7 +681,7 @@ function KeyConfigGenerique(defaultValue, targetChar)
 type: "text",
 class: "form-control"
 	});
-		//on set la value par défaut
+	//on set la value par défaut
 	this.$inputKeyElement.val(defaultValue);
 	
 	// on crée l'élément tr
@@ -692,7 +692,7 @@ class: "form-control"
 	this.$trElement.append($(document.createElement('td')).append(this.$inputKeyElement));
 	
 	
-/*
+	/*
 	this.$divElement = $(document.createElement('div')).attr({
 		class: "input-group col-xs-2"
 	});
@@ -850,19 +850,17 @@ function InputAnswer(inputAnswerId, configInstance)
 
 }
 
-
-//représente le bouton de choix fr->ro / ro->fr
-function ButtonSwitch(buttonSwitchId, imageButtonId)
+//représente le radio bouton de choix fr->ro / ro->fr
+function ButtonSwitch(radioButtonFrToRoId,radioButtonRoToFrId)
 {
 
 	var myButtonSwitch = this;
+	
+	this.$radioButtonFrToRo = $("#" + radioButtonFrToRoId);
+	this.$radioButtonRoToFr =$("#" + radioButtonRoToFrId);
 
-	this.buttonSwitch = $("#" + buttonSwitchId);
-	this.buttonSpan = $("#" + buttonSwitchId + " span ");
 
 	this.frToRo = true;
-
-	this.buttonSwitch.text("fr > ro")
 
 	this.listOfBindedFunctionToClickEvent = [];
 
@@ -877,20 +875,27 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 	{
 		return this.frToRo;
 	};
-
-	this.onClick = function()
+	
+	this.onClickFrToRo = function()
 	{
-		console.log("onClick");
-		if (myButtonSwitch.frToRo)
-		{
-			myButtonSwitch.frToRo = false;
-			myButtonSwitch.buttonSwitch.text("ro > fr")
+
+		myButtonSwitch.frToRo = true;
+
+
+		for (var j = 0; j < myButtonSwitch.listOfBindedFunctionToClickEvent.length; j++) {
+
+			myButtonSwitch.listOfBindedFunctionToClickEvent[j]();
+
 		}
-		else
-		{
-			myButtonSwitch.frToRo = true;
-			myButtonSwitch.buttonSwitch.text("fr > ro")
-		}
+
+
+	};
+	
+	this.onClickRoToFr = function()
+	{
+
+		myButtonSwitch.frToRo = false;
+
 
 		for (var j = 0; j < myButtonSwitch.listOfBindedFunctionToClickEvent.length; j++) {
 
@@ -901,10 +906,11 @@ function ButtonSwitch(buttonSwitchId, imageButtonId)
 
 	};
 
-	this.buttonSwitch.click(this.onClick);
+	
+	this.$radioButtonFrToRo.change(this.onClickFrToRo);
+	this.$radioButtonRoToFr.change(this.onClickRoToFr);
 
 }
-
 
 // représente le score
 function TextScore(textScoreId)
@@ -966,7 +972,8 @@ function TextScore(textScoreId)
 
 var textScore = new TextScore("textScore");
 
-var buttonSwitch = new ButtonSwitch("buttonSwitch", "imageButtonSwitch");
+var buttonSwitch = new ButtonSwitch("radioButtonFrToRo", "radioButtonRoToFr");
+
 
 
 
@@ -1270,10 +1277,10 @@ function sendGetListRequest()
 {
 	
 	$.ajax({
-        
+		
 
-		url: 'getLists.php',
-        //url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
+url: 'getLists.php',
+		//url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
 type: 'GET',
 dataType: 'json',
 success: function(jsonResult, statut) {
