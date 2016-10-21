@@ -297,7 +297,7 @@ lecon 7
 "fasole","haricot"
 "ardei","poivron"
 "strugure","raisin"
-"morvov","carotte"
+"morcov","carotte"
 "copil","enfant"
 "ciocolată","chocolat"
 "înghețată","glace"
