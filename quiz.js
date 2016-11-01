@@ -66,10 +66,10 @@ function TestItem(jsonTreeItem) {
 	{
 		for (var i = 0; i < this.getAnswer(frToRo).length; i++) {
 
-			var rocomp = this.getAnswer(frToRo)[i].toLowerCase().replace(/[?!.-]/g, " ").trim().replace(/[ ]+/g, " ");
+			var rocomp = this.getAnswer(frToRo)[i].toLowerCase().replace(/[?!.]/g, " ").trim().replace(/[ ]+/g, " ");
 			//displayutf8(rocomp);
 
-			var roanswercomp = valueRoToCompare.toLowerCase().replace(/[?!.-]/g, " ").trim().replace(/[ ]+/g, " ");
+			var roanswercomp = valueRoToCompare.toLowerCase().replace(/[?!.]/g, " ").trim().replace(/[ ]+/g, " ");
 			//displayutf8(rocomp);
 			if (rocomp == roanswercomp)
 			{
