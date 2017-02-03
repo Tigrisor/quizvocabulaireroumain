@@ -1,0 +1,131 @@
+Nombres
+Jours
+Fruits et légumes
+Couleurs
+Nouriture
+Météo
+Famille
+Maison
+Animaux
+Vettements
+Langues
+En voyage
+A l'école
+Les parties du corps
+Vocabulaire d'urgence
+
+
+un;unu
+deux;doi
+trois;trei
+quatre;patru
+cinq;cinci
+six;şase
+sept;şapte
+huit;opt
+neuf;nouă
+dix;zece
+premier;primul
+deuxième;al doilea
+lundi;luni
+mardi;marţi
+mercredi;miercuri
+jeudi;joi
+vendredi;vineri
+samedi;sâmbătă
+dimanche;duminică
+maintenant;acum
+hier;ieri
+aujourd'hui;astăzi
+ce soir;în seara aceasta
+demain;mâine
+fruits;fructe
+pommes ;mere
+bananes;banane
+tomates;roşii
+pommes de terre;cartofi
+oignons;ceapă
+rouge;roşu
+vert;verde
+bleu;albastru
+blanc;alb
+noir;negru
+gris;gri
+petit déjeuner;mic dejun
+déjeuner;prânz
+dîner;cină
+lait;lapte
+café;cafea
+pain;pâine
+ensoleillé;însorit
+venteux;vântos
+pluvieux;ploios
+enneigé;nins
+froid;rece
+chaud;fierbinte
+garçon;băiat
+jeune fille;fată
+fils;fiu
+fille;fiică
+frère;frate
+sœur;soră
+homme;bărbat
+femme;femeie
+père;tată
+mère;mamă
+grand-père;bunic
+grand-mère;bunică
+maison;casă
+toilettes;toaletă
+chambre;cameră
+chambre à coucher;dormitor
+cuisine;bucătărie
+table;tabel
+chat;pisică
+chien;câine
+souris;şoarece
+oiseau;pasăre
+vache;vacă
+cheval;cal
+chaussettes;şosete
+chaussures;pantofi
+pantalon;pantaloni
+chemise;cămaşă
+chandail;pulover
+manteau;haină
+anglais;engleză
+français;franceză
+allemand;germană
+espagnol;spaniolă
+italien;italiană
+portugais;portughez
+grec ;greacă
+russe;rusă
+arabe;arabă
+hindi;hindusă
+chinois;chineză
+japonais;japoneză
+taxi;taxi
+bus;autobuz
+hôtel;hotel
+réservation;rezervare
+aéroport;aeroport
+passeport;paşaport
+étudiant;student
+professeur;profesor
+stylo;stilou
+livres;cărţi
+page;pagină
+dictionnaire;dicţionar
+main;mână
+pieds;picioare
+cheveux;păr
+œil;ochi
+bouche;gură
+nez;nas
+ambulance;ambulanţă
+médecin;medic
+hôpital;spital
+pharmacie;farmacie
+police;poliţie
+mal de ventre;durere de stomac
