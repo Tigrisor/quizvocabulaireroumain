@@ -1,20 +1,6 @@
+
+
 Nombres
-Jours
-Fruits et légumes
-Couleurs
-Nouriture
-Météo
-Famille
-Maison
-Animaux
-Vettements
-Langues
-En voyage
-A l'école
-Les parties du corps
-Vocabulaire d'urgence
-
-
 un;unu
 deux;doi
 trois;trei
@@ -27,6 +13,8 @@ neuf;nouă
 dix;zece
 premier;primul
 deuxième;al doilea
+
+Jours
 lundi;luni
 mardi;marţi
 mercredi;miercuri
@@ -39,32 +27,42 @@ hier;ieri
 aujourd'hui;astăzi
 ce soir;în seara aceasta
 demain;mâine
+
+Fruits et légumes
 fruits;fructe
 pommes ;mere
 bananes;banane
 tomates;roşii
 pommes de terre;cartofi
 oignons;ceapă
+
+Couleurs
 rouge;roşu
 vert;verde
 bleu;albastru
 blanc;alb
 noir;negru
 gris;gri
+
+Nouriture
 petit déjeuner;mic dejun
 déjeuner;prânz
 dîner;cină
 lait;lapte
 café;cafea
 pain;pâine
+
+Météo
 ensoleillé;însorit
 venteux;vântos
 pluvieux;ploios
 enneigé;nins
 froid;rece
 chaud;fierbinte
+
+Famille
 garçon;băiat
-jeune fille;fată
+fille;fată
 fils;fiu
 fille;fiică
 frère;frate
@@ -75,24 +73,32 @@ père;tată
 mère;mamă
 grand-père;bunic
 grand-mère;bunică
+
+Maison
 maison;casă
 toilettes;toaletă
 chambre;cameră
 chambre à coucher;dormitor
 cuisine;bucătărie
 table;tabel
+
+Animaux
 chat;pisică
 chien;câine
 souris;şoarece
 oiseau;pasăre
 vache;vacă
 cheval;cal
+
+Vettements
 chaussettes;şosete
 chaussures;pantofi
 pantalon;pantaloni
 chemise;cămaşă
 chandail;pulover
 manteau;haină
+
+Langues
 anglais;engleză
 français;franceză
 allemand;germană
@@ -105,24 +111,32 @@ arabe;arabă
 hindi;hindusă
 chinois;chineză
 japonais;japoneză
+
+En voyage
 taxi;taxi
 bus;autobuz
 hôtel;hotel
 réservation;rezervare
 aéroport;aeroport
 passeport;paşaport
+
+A l'école
 étudiant;student
 professeur;profesor
 stylo;stilou
 livres;cărţi
 page;pagină
 dictionnaire;dicţionar
+
+Les parties du corps
 main;mână
 pieds;picioare
 cheveux;păr
 œil;ochi
 bouche;gură
 nez;nas
+
+Vocabulaire d'urgence
 ambulance;ambulanţă
 médecin;medic
 hôpital;spital
