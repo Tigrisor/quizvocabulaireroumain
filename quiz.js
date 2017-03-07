@@ -1138,8 +1138,10 @@ function QuizzJsTree(jsTreeId, jsonResult, loadedCallBack)
 			if (nodesArray[i].parent_id != null && nodesArray[i].parent_id == parentNode.metadata.id)
 			{
 				var open = false
-				//3 : valeur arbitraire
-				if (deepness < 3)
+				
+				//valeur de profondeur avant laquelle on laisse les noeuds ouverts
+				//2 : valeur arbitraire
+				if (deepness < 2)
 				{
 					open = true;
 				}
@@ -1147,7 +1149,7 @@ function QuizzJsTree(jsTreeId, jsonResult, loadedCallBack)
 
 				var node = new TreeItem(nodesArray[i], open);
 
-				this.addSonsNodes(node, nodesArray);
+				this.addSonsNodes(node, nodesArray, deepness+1);
 
 				//console.log("ajout : " + node.data + " -> " + parentNode.data);
 
