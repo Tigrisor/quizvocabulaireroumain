@@ -47,8 +47,7 @@
 
 </script>-->
 
-							<div class="container">
-
+							<div ng-app="quizApp" ng-controller="quizCtrl" class="container">
 								<div class="modal" id="modalAccueil">
 									<div class="modal-dialog">
 										<div class="modal-content">
@@ -103,7 +102,7 @@
 														<div class="row">
 															<div id="zoneResultat" class="alert alert-success col-xs-offset-1 col-xs-10" style="display:none">
 																<!--<span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span>-->
-																<div id="textPreviousQuestion"></div><div id="textPreviousQuestionRightAnswer"></div><div id="textPreviousAnswer"></div>
+																<div ng-bind="textPreviousQuestion"></div><div ng-bind="previousQuestionRightAnswerText"></div><div ng-bind="previousAnswerText" ng-class="previousAnswerClass"></div>
 																<!--<span style="border: 2px solid black;"><span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span></span>-->
 																<!-- <h2><span id="textPreviousQuestion"></span> : <span id="textPreviousAnswer"></span></h2> -->
 															</div>
@@ -117,13 +116,13 @@
 															<div class="form-group" >															
 																<!-- form-group : espacement entre les inputs d'un formulaire -->																														
 																<!--<label id="textQuestion" for="inputAnswer" ></label>-->
-																<div id="textQuestion" class="col-xs-offset-1 col-xs-10"></div>
+																<div id="textQuestion" ng-bind="textQuestion" class="col-xs-offset-1 col-xs-10"></div>
 																<div id="inputAnswerGroup" class="input-group col-xs-offset-1 col-xs-10"> 																
 																	<!--<span id="textQuestion" class="input-group-addon"></span> -->
 																	<!--  style="text-align:right" text-center-->
-																	<input id="inputAnswer" type="text" class="form-control input-lg" placeholder="Réponse"/>
+																	<input id="inputAnswer" ng-keypress="managePressEnter($event)" type="text" class="form-control input-lg" placeholder="Réponse"/>
 																	<span class="input-group-btn">
-																		<button id="buttonOk" class="btn btn-primary btn-lg" type="button"><span class="glyphicon glyphicon-ok-sign"></span> <span class="hidden-xs">Valider</span></button>
+																		<button ng-click="evaluateAndAskNextQuestion()" class="btn btn-primary btn-lg" type="button"><span class="glyphicon glyphicon-ok-sign"></span> <span class="hidden-xs">Valider</span></button>
 																	</span>
 																</div>
 															</div>
@@ -224,6 +223,9 @@
 
 							<!-- JQuery caret (gérer curseur dans input)-->
 							<script type="text/javascript" src="js/jquery.caret-1.5.2.min.js"></script>
+							
+							<!-- AngularJS-->
+							<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>								
 
 							<!-- script principal -->
 							<script type="text/javascript" src="quiz.js" charset="UTF-8" ></script>

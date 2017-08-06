@@ -105,288 +105,6 @@ function TestItem(jsonTreeItem) {
 
 }
 
-// le test
-function Quizz(buttonOkId, buttonSwitch, quizzJsTreeId, jsonResult, textPreviousQuestionId, textPreviousAnswerId, textQuestionId, inputAnswerId, textPreviousQuestionRightAnswerId, textScore, zoneResultatId) {
-
-	// *** les objets ***    
-
-	var myQuizz = this;
-	this.buttonSwitch = buttonSwitch;
-
-	// html elements
-	this.$textPreviousQuestion = $("#" + textPreviousQuestionId);
-	this.$textPreviousAnswer = $("#" + textPreviousAnswerId);
-	this.$textPreviousQuestionRightAnswer = $("#" + textPreviousQuestionRightAnswerId);
-	this.textQuestion = document.getElementById(textQuestionId);
-	// todo : remplacer inputAnswer par $inputAnswer
-	this.inputAnswer = document.getElementById(inputAnswerId);
-	this.$inputAnswer = $("#"+inputAnswerId);
-	this.textScore = textScore;
-	this.buttonOk = $("#" + buttonOkId);
-	this.$zoneResultat = $("#" + zoneResultatId)
-
-	// *** autres attributs ***
-
-	this.frToRo = true;
-	this.quizzSessionItemArray = [];
-	this.currentTestItemId = 0;
-
-
-	this.manageButtonSwitched = function()
-	{
-		myQuizz.frToRo = myQuizz.buttonSwitch.getFrToRo();
-
-		// on met a jour l'arbre
-		myQuizz.quizzJsTree.setLang(myQuizz.buttonSwitch.getFrToRo());
-
-		// on relance le test
-		myQuizz.performQuizz();
-
-		console.log("yeah baby !!");
-
-	};
-
-	this.buttonSwitch.bindMeToClickEvent(this.manageButtonSwitched);
-
-	//update la liste des items a demander si des feuilles de l'arbre sont cochée/décochées
-	// todo : p-e finalement laisser la liste des items dans l'arbre pour avoir tout au même endroit...
-	// todo : trouver un moyen de garder la proba en la mixant avec les nouveaux éléments...
-	this.manageTreeChange = function() {
-
-		var checkedItemIdList = myQuizz.quizzJsTree.getCheckedItemIdList();
-
-		// on les met tous a unselect
-		for (var id in myQuizz.testItemMap) {
-			myQuizz.testItemMap[id].unSelect();            
-			myQuizz.testItemMap[id].resetChance();
-		}
-
-		// on selectionne ceux cochés dans l'arbre
-		for (var i = 0; i < checkedItemIdList.length; i++) {
-			myQuizz.testItemMap[checkedItemIdList[i]].select();
-
-		}
-
-		// on relance le test        
-		myQuizz.performQuizz();
-
-
-	};
-
-	this.quizzJsTree = new QuizzJsTree(quizzJsTreeId, jsonResult, this.manageTreeChange);
-	this.testItemMap = this.quizzJsTree.getTestItemMap();
-
-	//on initialise l'arbre
-	this.quizzJsTree.setLang(this.buttonSwitch.getFrToRo());
-
-
-	this.getRandomTestItem = function(excludedId)
-	{
-
-		var numberOfTestItems = 0;
-		var totalChance = 0;
-
-		// utilisé pour éviter de refaire un boucle dans le cas ou c'est le seul item éligible
-		var lastOkId = 0;
-
-		for (var id in this.testItemMap) {
-
-			if (id != excludedId && this.testItemMap[id].isSelected())
-			{
-				totalChance += this.testItemMap[id].chance;
-				lastOkId = id;
-				numberOfTestItems++;
-			}
-
-		}
-
-		// cas ou la lite de tstItems est vide => on rend 0
-		if (numberOfTestItems == 0)
-		{
-
-			// on exclu plus l'item de la question précédente dans le cas ou c'est le seul choix possible
-			if (this.testItemMap[excludedId] != null)
-			{
-				if (this.testItemMap[excludedId].isSelected())
-				{
-					return excludedId;
-				}
-			}
-
-			// si excludedId est dans la map => on le retourne sinon => 0
-			return 0;
-		}
-		// cas ou on a qu'un seul item dans la liste => on retourne le seul item disponible
-		else if (numberOfTestItems == 1)
-		{
-			// on retourne le seul item possible (mais on vérifie quand même qu'il est bien là...)
-			if (this.testItemMap[lastOkId] != null)
-			{
-				if (this.testItemMap[lastOkId].isSelected())
-				{
-					return lastOkId;
-				}
-			}
-
-			return 0;
-		}
-		// cas ou on a plus de 1 item dans la liste => on applique le comportement normal
-		else
-		{
-
-			console.log("chance totale : " + totalChance);
-
-			var randomChance = Math.floor(Math.random() * (totalChance)) + 1;//Math.ceil(Math.random()*(totalChance));
-
-
-			var sumChance = 0;
-
-			/*
-			for (var id in this.testItemMap) {
-			if (id != excludedId && this.testItemMap[id].isSelected())
-			{
-			console.log(this.testItemMap[id].ro + " : " + this.testItemMap[id].chance);
-			}
-			}
-			*/
-
-			for (var id in this.testItemMap) {
-
-
-				if (id != excludedId && this.testItemMap[id].isSelected())
-				{
-					sumChance += this.testItemMap[id].chance;
-
-
-
-					if (sumChance >= randomChance)
-					{
-						//console.log("somme : " + sumChance + " >= tirage : " + randomChance + " => id : " + id);
-						return id;
-					}
-
-					//console.log("somme : " + sumChance + " < tirage : " + randomChance + " (id : " + id + ")");
-				}
-
-			}
-		}
-	}
-
-	this.evaluateAnswer = function()
-	{
-
-		if (this.currentTestItemId != 0)
-		{
-			var currentTestItem = this.testItemMap[this.currentTestItemId];
-			this.$textPreviousQuestion.text(currentTestItem.getQuestion(this.frToRo)[0]);
-
-			if (currentTestItem.compareWithSolution(this.frToRo, this.inputAnswer.value))
-			{
-				//cas réponse bonne 
-				this.$textPreviousAnswer.text(this.inputAnswer.value).removeClass( "wrongAnswer" );
-				this.$textPreviousQuestionRightAnswer.text("");
-				this.$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" ).show("slow");
-				this.textScore.countWrightAnswer();
-				currentTestItem.substractChance();
-			}
-			else
-			{
-				// cas réponse fausse
-				this.$textPreviousAnswer.text(this.inputAnswer.value).addClass( "wrongAnswer" );
-				this.$textPreviousQuestionRightAnswer.text(currentTestItem.getAnswer(this.frToRo)[0]);
-				this.$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
-				this.textScore.countWrongAnswer();
-				currentTestItem.addChance();
-			}
-		}
-
-	};
-
-	this.askNextQuestion = function()
-	{
-
-		var nextTestItemId = this.getRandomTestItem(this.currentTestItemId);
-		if (nextTestItemId != 0)
-		{
-			var nextTestItem = this.testItemMap[nextTestItemId];
-
-			this.textQuestion.innerHTML = nextTestItem.getQuestion(this.frToRo)[0];
-			this.inputAnswer.value = "";
-
-			this.currentTestItemId = nextTestItemId;
-		}
-
-	};
-
-	this.performQuizz = function()
-	{
-		this.textScore.reset();
-		this.askNextQuestion();
-
-	};
-
-	this.toString = function()
-	{
-
-		var itemToString = "";
-
-		for (var i = 0; i < this.quizzSessionItemArray.length; i++) {
-			itemToString += i + " : [ " + this.quizzSessionItemArray[i].fr + " ; " + this.quizzSessionItemArray[i].ro + "]\n";
-		}
-
-		alert(itemToString);
-	};
-
-	this.managePressEnter = function(e) {
-		console.log("managePressEnter");
-
-		if (e.keyCode == 13)
-		{
-			myQuizz.evaluateAndAskNextQuestion();
-		}
-	};
-
-	this.evaluateAndAskNextQuestion = function()
-	{
-		myQuizz.evaluateAnswer();
-		myQuizz.askNextQuestion();
-		myQuizz.$inputAnswer.focus();
-	};
-
-	//abonnement aux évènements
-	this.inputAnswer.addEventListener('keydown', this.managePressEnter, false);
-
-	this.buttonOk.click(this.evaluateAndAskNextQuestion);
-
-	// on met a jour notre liste de checked (plus nécessaire si on rapatrie la liste des items dans l'arbre)
-
-	this.quizzJsTree.bindMeToCheckEvent(this.manageTreeChange);
-}
-
-// todo a virer
-//représente un ensemble de boutons de caractères spéciaux
-function ButtonsSpecialChar(containerId, inputAnswerId) {
-	
-	var myButtonsSpecialChar = this;	
-	this.containerId = containerId;	
-	this.inputAnswerId = inputAnswerId;
-	
-	
-	//this.$container = $('#'+containerId)
-	
-	this.buttonsSpecialCharArray = [];
-	
-	this.addButton = function(specialChar) {
-		
-		var buttonSpecialChar = new ButtonSpecialChar(specialChar, myButtonsSpecialChar.containerId, myButtonsSpecialChar.inputAnswerId);
-		//this.quizzSessionItemArray.push(buttonSpecialChar);
-		//todo : ajouter le code en s'inspirant d'en dessous
-		
-		//buttonSpecialChar.addInElement(this.containerId);
-		
-	}
-}
-
 // représente un bouton permettant d'ajouter un caractère spécial
 function ButtonSpecialChar(specialChar, containerId, inputAnswerId)
 {
@@ -1275,64 +993,315 @@ function QuizzJsTree(jsTreeId, jsonResult, loadedCallBack)
 
 
 
-function sendGetListRequest()
-{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var app = angular.module("quizApp", []);
+
+app.controller("quizCtrl", function($scope,$http) {
 	
-	$.ajax({
+	//on affiche la modale
+	$('#modalAccueil').modal('show');
+	
+	var jsonResult;
+	
+	// en local utiliser 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php'
+	$http.get("getLists.php").then(
+	function successCallback(response) {
+		//succès de la requête		
+		jsonResult = response.data;
 		
-
-url: 'getLists.php',
-		//url: 'http://quizzvocabulaireroumain.perso.sfr.fr/getLists.php',
-type: 'GET',
-dataType: 'json',
-success: function(jsonResult, statut) {
-
-			//var quizzJsTree = new QuizzJsTree("voctree",jsonResult);
-
-			var myQuizz = new Quizz("buttonOk", buttonSwitch, "voctree", jsonResult, "textPreviousQuestion", "textPreviousAnswer", "textQuestion", "inputAnswer", "textPreviousQuestionRightAnswer", textScore, "zoneResultat");
+		// pour un arbre angular : https://github.com/iVantage/angular-ivh-treeview		
+		initJsTree();
+		performQuizz();
+  }, function errorCallback(response) {
+	  // erreur de la requête
+	  console.log("getLists query error : " + response.xhrStatus  + " ( " + response.status  + " ) " + response.statusText );    
+  });
 
 
-			myQuizz.performQuizz();
+	// *** les objets ***    
+
+	// html elements
+	//var textQuestion = document.getElementById("textQuestion");
+	// todo : remplacer inputAnswer par $inputAnswer
+	var inputAnswer = document.getElementById("inputAnswer");
+	var $inputAnswer = $("#"+"inputAnswer");
+	var $zoneResultat = $("#" + "zoneResultat")
+
+	// *** autres attributs ***
+
+	var frToRo = true;
+	var quizzSessionItemArray = [];
+	var currentTestItemId = 0;
 
 
+	function manageButtonSwitched()
+	{
+		frToRo = buttonSwitch.getFrToRo();
 
-			//quizzJsTree.buildTree("voctree",jsonResult);
+		// on met a jour l'arbre
+		quizzJsTree.setLang(buttonSwitch.getFrToRo());
 
-			//createTreeView(jsonResult);
+		// on relance le test
+		performQuizz();
+
+	};
+
+	buttonSwitch.bindMeToClickEvent(manageButtonSwitched);
+
+	//update la liste des items a demander si des feuilles de l'arbre sont cochée/décochées
+	// todo : p-e finalement laisser la liste des items dans l'arbre pour avoir tout au même endroit...
+	// todo : trouver un moyen de garder la proba en la mixant avec les nouveaux éléments...
+	function manageTreeChange() {
+
+		var checkedItemIdList = quizzJsTree.getCheckedItemIdList();
+
+		// on les met tous a unselect
+		for (var id in testItemMap) {
+			testItemMap[id].unSelect();            
+			testItemMap[id].resetChance();
+		}
+
+		// on selectionne ceux cochés dans l'arbre
+		for (var i = 0; i < checkedItemIdList.length; i++) {
+			testItemMap[checkedItemIdList[i]].select();
+
+		}
+
+		// on relance le test        
+		performQuizz();
+
+
+	};
+	
+	
+	var quizzJsTree;
+	var testItemMap;
+	
+	//on initialise l'arbre
+	function initJsTree()
+	{
+		quizzJsTree = new QuizzJsTree("voctree", jsonResult, manageTreeChange);
+		testItemMap = quizzJsTree.getTestItemMap();
+		quizzJsTree.setLang(buttonSwitch.getFrToRo());
+		// on met a jour notre liste de checked (plus nécessaire si on rapatrie la liste des items dans l'arbre)
+		quizzJsTree.bindMeToCheckEvent(manageTreeChange);
+	}
+
+
+	function getRandomTestItem(excludedId)
+	{
+
+		var numberOfTestItems = 0;
+		var totalChance = 0;
+
+		// utilisé pour éviter de refaire un boucle dans le cas ou c'est le seul item éligible
+		var lastOkId = 0;
+
+		for (var id in testItemMap) {
+
+			if (id != excludedId && testItemMap[id].isSelected())
+			{
+				totalChance += testItemMap[id].chance;
+				lastOkId = id;
+				numberOfTestItems++;
+			}
+
+		}
+
+		// cas ou la lite de tstItems est vide => on rend 0
+		if (numberOfTestItems == 0)
+		{
+
+			// on exclu plus l'item de la question précédente dans le cas ou c'est le seul choix possible
+			if (testItemMap[excludedId] != null)
+			{
+				if (testItemMap[excludedId].isSelected())
+				{
+					return excludedId;
+				}
+			}
+
+			// si excludedId est dans la map => on le retourne sinon => 0
+			return 0;
+		}
+		// cas ou on a qu'un seul item dans la liste => on retourne le seul item disponible
+		else if (numberOfTestItems == 1)
+		{
+			// on retourne le seul item possible (mais on vérifie quand même qu'il est bien là...)
+			if (testItemMap[lastOkId] != null)
+			{
+				if (testItemMap[lastOkId].isSelected())
+				{
+					return lastOkId;
+				}
+			}
+
+			return 0;
+		}
+		// cas ou on a plus de 1 item dans la liste => on applique le comportement normal
+		else
+		{
+
+			console.log("chance totale : " + totalChance);
+
+			var randomChance = Math.floor(Math.random() * (totalChance)) + 1;//Math.ceil(Math.random()*(totalChance));
+
+
+			var sumChance = 0;
 
 			/*
-		var resultString = "";
-		
-		for (var i = 0; i < jsonResult.length; i++) {
-		resultString+= jsonResult[i].name+" ; "+jsonResult[i].ro+" ; "+jsonResult[i].fr + "]\n";
-		}*/
+			for (var id in this.testItemMap) {
+			if (id != excludedId && this.testItemMap[id].isSelected())
+			{
+			console.log(this.testItemMap[id].ro + " : " + this.testItemMap[id].chance);
+			}
+			}
+			*/
 
-			//alert("success : "+jsonResult);
-			//console.log("success : "+resultString);//+"  "+jsonResult["2"]);
+			for (var id in testItemMap) {
 
-			//$(jsonResult).appendTo("#commentaires"); // On passe jsonResult à jQuery() qui va nous créer l'arbre DOM !
-		},
-error: function(resultat, statut, erreur) {
-			console.log("getLists query error : " + resultat + " " + statut + " " + erreur);
-			// en cas d'erreur on fait un refresh de la page
-			//location.reload();
-			
-			//sendGetListRequest();
-		},
-complete: function(resultat, statut) {
-			console.log("getLists query complete : " + resultat + " " + statut);
+
+				if (id != excludedId && testItemMap[id].isSelected())
+				{
+					sumChance += testItemMap[id].chance;
+
+
+
+					if (sumChance >= randomChance)
+					{
+						//console.log("somme : " + sumChance + " >= tirage : " + randomChance + " => id : " + id);
+						return id;
+					}
+
+					//console.log("somme : " + sumChance + " < tirage : " + randomChance + " (id : " + id + ")");
+				}
+
+			}
 		}
-	});
+	}
 
-}
+	function evaluateAnswer()
+	{
 
-//lancé dès que l'arbre dom est fini de charger
-jQuery(function()
-{
-	sendGetListRequest(); //commenté pour offline 
-	$('#modalAccueil').modal('show');
-}
-);
+		if (currentTestItemId != 0)
+		{
+			var currentTestItem = testItemMap[currentTestItemId];
+			
+			$scope.textPreviousQuestion = currentTestItem.getQuestion(frToRo)[0];
+			
+
+			if (currentTestItem.compareWithSolution(frToRo, inputAnswer.value))
+			{
+				//cas réponse bonne 
+				$scope.previousAnswerText = inputAnswer.value;
+				$scope.previousAnswerClass = "";
+				
+				$scope.previousQuestionRightAnswerText = "";
+				
+				$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" ).show("slow");
+				textScore.countWrightAnswer();
+				currentTestItem.substractChance();
+			}
+			else
+			{
+				// cas réponse fausse
+				$scope.previousAnswerText = inputAnswer.value;
+				$scope.previousAnswerClass = "wrongAnswer";
+				
+				$scope.previousQuestionRightAnswerText = currentTestItem.getAnswer(frToRo)[0];
+
+				$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
+				textScore.countWrongAnswer();
+				currentTestItem.addChance();
+			}
+		}
+
+	};
+
+	function askNextQuestion()
+	{
+
+		var nextTestItemId = getRandomTestItem(currentTestItemId);
+		if (nextTestItemId != 0)
+		{
+			var nextTestItem = testItemMap[nextTestItemId];
+			
+			$scope.textQuestion = nextTestItem.getQuestion(frToRo)[0];
+			inputAnswer.value = "";
+
+			currentTestItemId = nextTestItemId;
+		}
+
+	};
+
+	function performQuizz()
+	{
+		textScore.reset();
+		askNextQuestion();
+
+	};
+
+	function toString()
+	{
+
+		var itemToString = "";
+
+		for (var i = 0; i < quizzSessionItemArray.length; i++) {
+			itemToString += i + " : [ " + quizzSessionItemArray[i].fr + " ; " + quizzSessionItemArray[i].ro + "]\n";
+		}
+
+		alert(itemToString);
+	};
+
+		
+		/// appelée lorsque l'on presse une touche avec le focus sur le champ réponse
+	$scope.managePressEnter = function(keyEvent) {
+
+		if (keyEvent.which === 13)
+		{
+			$scope.evaluateAndAskNextQuestion();
+		}
+	};
+
+	/// appelée lorsque l'on clique sur le bouton OK
+	$scope.evaluateAndAskNextQuestion = function()
+	{
+		evaluateAnswer();
+		askNextQuestion();
+		$inputAnswer.focus();
+	};
+	
+});
 
 
 
