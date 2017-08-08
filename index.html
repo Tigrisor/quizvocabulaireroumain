@@ -100,7 +100,7 @@
 
 														</div>
 														<div class="row">
-															<div id="zoneResultat" class="alert alert-success col-xs-offset-1 col-xs-10" style="display:none">
+															<div id="zoneResultat" ng-class="zoneResultatClass" ng-show="zoneResultatShow" class="alert col-xs-offset-1 col-xs-10">
 																<!--<span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span>-->
 																<div ng-bind="textPreviousQuestion"></div><div ng-bind="previousQuestionRightAnswerText"></div><div ng-bind="previousAnswerText" ng-class="previousAnswerClass"></div>
 																<!--<span style="border: 2px solid black;"><span id="textPreviousQuestion"></span> : <span id="textPreviousQuestionRightAnswer"></span><span id="textPreviousAnswer"></span></span>-->

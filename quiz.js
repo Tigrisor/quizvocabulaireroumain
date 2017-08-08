@@ -1055,7 +1055,8 @@ app.controller("quizCtrl", function($scope,$http) {
 	// todo : remplacer inputAnswer par $inputAnswer
 	var inputAnswer = document.getElementById("inputAnswer");
 	var $inputAnswer = $("#"+"inputAnswer");
-	var $zoneResultat = $("#" + "zoneResultat")
+	
+	$scope.zoneResultatShow = false;
 
 	// *** autres attributs ***
 
@@ -1228,7 +1229,8 @@ app.controller("quizCtrl", function($scope,$http) {
 				
 				$scope.previousQuestionRightAnswerText = "";
 				
-				$zoneResultat.removeClass( "alert-danger" ).addClass( "alert-success" ).show("slow");
+				$scope.zoneResultatClass = "alert-success"
+				$scope.zoneResultatShow = true;
 				textScore.countWrightAnswer();
 				currentTestItem.substractChance();
 			}
@@ -1240,7 +1242,8 @@ app.controller("quizCtrl", function($scope,$http) {
 				
 				$scope.previousQuestionRightAnswerText = currentTestItem.getAnswer(frToRo)[0];
 
-				$zoneResultat.removeClass( "alert-success" ).addClass( "alert-danger" ).show("slow");
+				$scope.zoneResultatClass = "alert-danger"
+				$scope.zoneResultatShow = true;
 				textScore.countWrongAnswer();
 				currentTestItem.addChance();
 			}
