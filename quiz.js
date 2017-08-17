@@ -1024,7 +1024,7 @@ function QuizzJsTree(jsTreeId, jsonResult, loadedCallBack)
 
 
 
-var app = angular.module("quizApp", []);
+var app = angular.module("quizApp", ['ui.bootstrap']);
 
 app.controller("quizCtrl", function($scope,$http) {
 	

@@ -122,7 +122,7 @@
 																	<!--  style="text-align:right" text-center-->
 																	<input id="inputAnswer" ng-keypress="managePressEnter($event)" type="text" class="form-control input-lg" placeholder="Réponse"/>
 																	<span class="input-group-btn">
-																		<button ng-click="evaluateAndAskNextQuestion()" class="btn btn-primary btn-lg" type="button"><span class="glyphicon glyphicon-ok-sign"></span> <span class="hidden-xs">Valider</span></button>
+																		<button ng-click="evaluateAndAskNextQuestion()" class="btn btn-primary btn-lg" type="button" uib-tooltip="Pour aller plus vite, vous pouvez aussi valider votre réponse avec la touche entrée" tooltip-placement="right" tooltip-append-to-body="true"><span class="glyphicon glyphicon-ok-sign"></span> <span class="hidden-xs">Valider</span></button>
 																	</span>
 																</div>
 															</div>
@@ -226,7 +226,11 @@
 							
 							<!-- AngularJS-->
 							<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>								
-
+							
+							<!--Modules AngularJS-->
+							<!--ui-boostrap-->
+							<script type="text/javascript" src="js/angularjs/modules/ui-boostrap/ui-bootstrap-tpls-2.5.0.min.js"></script>							
+							
 							<!-- script principal -->
 							<script type="text/javascript" src="quiz.js" charset="UTF-8" ></script>
 
