@@ -1141,7 +1141,7 @@ function QuizzJsTree(jsTreeId, jsonResult, loadedCallBack)
 				
 				//valeur de profondeur avant laquelle on laisse les noeuds ouverts
 				//2 : valeur arbitraire
-				if (deepness < 2)
+				if (deepness < 1)
 				{
 					open = true;
 				}
