@@ -1,0 +1,157 @@
+
+
+call insert_nodes('Nombres', 1, 'Nombres', 0, @id_inserted_node); SELECT @id_inserted_node 
+
+-> 646
+
+Nombres
+
+
+call insert_test_item_in_tree(IN ti_ro VARCHAR(100) CHARSET utf8, IN ti_fr VARCHAR(100) CHARSET utf8, IN ti_parent_id INT)
+BEGIN
+
+call delete_test_item(640);
+call delete_test_item(639);
+
+call insert_test_item_in_tree('unu', 'un', 646);
+call insert_test_item_in_tree('doi', 'deux', 646);
+call insert_test_item_in_tree('trei', 'trois', 646);
+call insert_test_item_in_tree('patru', 'quatre', 646);
+call insert_test_item_in_tree('cinci', 'cinq', 646);
+call insert_test_item_in_tree('șase', 'six', 646);
+call insert_test_item_in_tree('șapte', 'sept', 646);
+call insert_test_item_in_tree('opt', 'huit', 646);
+call insert_test_item_in_tree('nouă', 'neuf', 646);
+call insert_test_item_in_tree('zece', 'dix', 646);
+call insert_test_item_in_tree('primul', 'premier', 646);
+call insert_test_item_in_tree('al doilea', 'deuxième', 646);
+
+Jours
+call insert_test_item_in_tree('luni', 'lundi', 663);
+call insert_test_item_in_tree('marți', 'mardi', 663);
+call insert_test_item_in_tree('miercuri', 'mercredi', 663);
+call insert_test_item_in_tree('joi', 'jeudi', 663);
+call insert_test_item_in_tree('vineri', 'vendredi', 663);
+call insert_test_item_in_tree('sâmbătă', 'samedi', 663);
+call insert_test_item_in_tree('duminică', 'dimanche', 663);
+call insert_test_item_in_tree('acum', 'maintenant', 663);
+call insert_test_item_in_tree('ieri', 'hier', 663);
+call insert_test_item_in_tree('astăzi', 'aujourd''hui', 663);
+call insert_test_item_in_tree('în seara aceasta', 'ce soir', 663);
+call insert_test_item_in_tree('mâine', 'demain', 663);
+
+Fruits et légumes
+call insert_test_item_in_tree('fructe', 'fruits', 676);
+call insert_test_item_in_tree('mere', 'pommes ', 676);
+call insert_test_item_in_tree('banane', 'bananes', 676);
+call insert_test_item_in_tree('roșii', 'tomates', 676);
+call insert_test_item_in_tree('cartofi', 'pommes de terre', 676);
+call insert_test_item_in_tree('ceapă', 'oignons', 676);
+
+Couleurs
+call insert_test_item_in_tree('roșu', 'rouge', 683);
+call insert_test_item_in_tree('verde', 'vert', 683);
+call insert_test_item_in_tree('albastru', 'bleu', 683);
+call insert_test_item_in_tree('alb', 'blanc', 683);
+call insert_test_item_in_tree('negru', 'noir', 683);
+call insert_test_item_in_tree('gri', 'gris', 683);
+
+Nourriture
+call insert_test_item_in_tree('mic dejun', 'petit déjeuner', 690);
+call insert_test_item_in_tree('prânz', 'déjeuner', 690);
+call insert_test_item_in_tree('cină', 'dîner', 690);
+call insert_test_item_in_tree('lapte', 'lait', 690);
+call insert_test_item_in_tree('cafea', 'café', 690);
+call insert_test_item_in_tree('pâine', 'pain', 690);
+
+Météo
+call insert_test_item_in_tree('însorit', 'ensoleillé', 697);
+call insert_test_item_in_tree('vântos', 'venteux', 697);
+call insert_test_item_in_tree('ploios', 'pluvieux', 697);
+call insert_test_item_in_tree('nins', 'enneigé', 697);
+call insert_test_item_in_tree('rece', 'froid', 697);
+call insert_test_item_in_tree('fierbinte', 'chaud', 697);
+
+Famille
+call insert_test_item_in_tree('băiat', 'garçon', 704);
+call insert_test_item_in_tree('fată', 'fille', 704);
+call insert_test_item_in_tree('fiu', 'fils', 704);
+call insert_test_item_in_tree('fiică', 'fille', 704);
+call insert_test_item_in_tree('frate', 'frère', 704);
+call insert_test_item_in_tree('soră', 'soeur', 704);
+call insert_test_item_in_tree('bărbat', 'homme', 704);
+call insert_test_item_in_tree('femeie', 'femme', 704);
+call insert_test_item_in_tree('tată', 'père', 704);
+call insert_test_item_in_tree('mamă', 'mère', 704);
+call insert_test_item_in_tree('bunic', 'grand-père', 704);
+call insert_test_item_in_tree('bunică', 'grand-mère', 704);
+
+call insert_nodes('Maison', 1, 'Maison', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('casă', 'maison', 717);
+call insert_test_item_in_tree('toaletă', 'toilettes', 717);
+call insert_test_item_in_tree('cameră', 'chambre', 717);
+call insert_test_item_in_tree('dormitor', 'chambre à coucher', 717);
+call insert_test_item_in_tree('bucătărie', 'cuisine', 717);
+call insert_test_item_in_tree('masă', 'table', 717);
+
+call insert_nodes('Animaux', 1, 'Animaux', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('pisică', 'chat', 724);
+call insert_test_item_in_tree('câine', 'chien', 724);
+call insert_test_item_in_tree('șoarece', 'souris', 724);
+call insert_test_item_in_tree('pasăre', 'oiseau', 724);
+call insert_test_item_in_tree('vacă', 'vache', 724);
+call insert_test_item_in_tree('cal', 'cheval', 724);
+
+call insert_nodes('Vettements', 1, 'Vettements', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('șosete', 'chaussettes', 731);
+call insert_test_item_in_tree('pantofi', 'chaussures', 731);
+call insert_test_item_in_tree('pantaloni', 'pantalon', 731);
+call insert_test_item_in_tree('cămașă', 'chemise', 731);
+call insert_test_item_in_tree('pulover', 'pull', 731);
+call insert_test_item_in_tree('haină', 'manteau', 731);
+
+call insert_nodes('Langues', 1, 'Langues', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('engleză', 'anglais', 738);
+call insert_test_item_in_tree('franceză', 'français', 738);
+call insert_test_item_in_tree('germană', 'allemand', 738);
+call insert_test_item_in_tree('spaniolă', 'espagnol', 738);
+call insert_test_item_in_tree('italiană', 'italien', 738);
+call insert_test_item_in_tree('portughez', 'portugais', 738);
+call insert_test_item_in_tree('greacă', 'grec ', 738);
+call insert_test_item_in_tree('rusă', 'russe', 738);
+call insert_test_item_in_tree('arabă', 'arabe', 738);
+call insert_test_item_in_tree('hindusă', 'hindi', 738);
+call insert_test_item_in_tree('chineză', 'chinois', 738);
+call insert_test_item_in_tree('japoneză', 'japonais', 738);
+
+call insert_nodes('En voyage', 1, 'En voyage', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('taxi', 'taxi', 751);
+call insert_test_item_in_tree('autobuz', 'bus', 751);
+call insert_test_item_in_tree('hotel', 'hôtel', 751);
+call insert_test_item_in_tree('rezervare', 'réservation', 751);
+call insert_test_item_in_tree('aeroport', 'aéroport', 751);
+call insert_test_item_in_tree('pașaport', 'passeport', 751);
+
+call insert_nodes('A l''école', 1, 'A l''école', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('student', 'étudiant', 758);
+call insert_test_item_in_tree('profesor', 'professeur', 758);
+call insert_test_item_in_tree('stilou', 'stylo', 758);
+call insert_test_item_in_tree('cărți', 'livres', 758);
+call insert_test_item_in_tree('pagină', 'page', 758);
+call insert_test_item_in_tree('dicționar', 'dictionnaire', 758);
+
+call insert_nodes('Les parties du corps', 1, 'Les parties du corps', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('mână', 'main', 765);
+call insert_test_item_in_tree('picioare', 'pieds', 765);
+call insert_test_item_in_tree('păr', 'cheveux', 765);
+call insert_test_item_in_tree('ochi', 'œil', 765);
+call insert_test_item_in_tree('gură', 'bouche', 765);
+call insert_test_item_in_tree('nas', 'nez', 765);
+
+call insert_nodes('Vocabulaire d''urgence', 1, 'Vocabulaire d''urgence', 0, @id_inserted_node); SELECT @id_inserted_node ;
+call insert_test_item_in_tree('ambulanță', 'ambulance', 772);
+call insert_test_item_in_tree('medic', 'médecin', 772);
+call insert_test_item_in_tree('spital', 'hôpital', 772);
+call insert_test_item_in_tree('farmacie', 'pharmacie', 772);
+call insert_test_item_in_tree('poliție', 'police', 772);
+call insert_test_item_in_tree('durere de stomac', 'mal de ventre', 772);
