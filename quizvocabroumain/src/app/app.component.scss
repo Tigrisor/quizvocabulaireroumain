@@ -1,0 +1,58 @@
+footer
+{
+    color : #777777;
+    font-size : small;
+    text-align: center;
+}
+
+#inputAnswer
+{
+	color : #777777;
+	text-align: center;
+}
+/* voir si on ne peut pas mutualiser le 18px qqpart */
+#textQuestion
+{
+	text-align:center;
+	font-size : 18px;
+	margin-bottom : 15px;
+}
+
+#zoneResultat
+{
+	text-align:center;
+	font-size:18px;
+	margin-bottom:15px;
+}
+
+#labelScore
+{
+	font-size:18px;
+}
+
+.wrongAnswer
+{
+    text-decoration:line-through;
+}
+
+#textScoreTitle
+{
+	text-align:right;
+}
+/* utilisé pour avoir le score a droite dans le titre du test*/
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
+/* pour que les boutons de caractère spéciaux soient centrés*/
+#buttonsSpecialChar {
+	text-align:center;
+}
+
+.buttonCharSpe {
+	/*margin-left:7px;
+	margin-right:7px*/
+}
